@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitation Cards | EditPro</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+:root {
+    --primary: #6366f1; --primary-dark: #4f46e5; --secondary: #ec4899;
+    --success: #10b981; --dark: #1e293b; --gray-50: #f8fafc;
+    --gray-100: #f1f5f9; --gray-200: #e2e8f0; --gray-500: #64748b;
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+body { background: var(--gray-50); min-height: 100vh; }
+
+/* Navigation */
+nav { background: white; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+.logo { font-size: 24px; font-weight: 700; color: var(--primary); text-decoration: none; }
+.nav-links { display: flex; gap: 24px; list-style: none; }
+.nav-links a { color: var(--dark); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+.nav-links a:hover { color: var(--primary); }
+.nav-cta { background: var(--primary); color: white !important; padding: 10px 20px; border-radius: 8px; }
+.nav-toggle { display: none; }
+
+/* Hero */
+.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); padding: 80px 40px; text-align: center; color: white; }
+.hero h1 { font-size: 48px; margin-bottom: 16px; }
+.hero p { font-size: 20px; opacity: 0.9; }
+
+/* Services Grid */
+.services { padding: 60px 40px; max-width: 1200px; margin: 0 auto; }
+.services h2 { text-align: center; font-size: 32px; margin-bottom: 40px; color: var(--dark); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+.card { background: white; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-xl); transition: transform 0.3s; }
+.card:hover { transform: translateY(-10px); }
+.card-image { height: 250px; background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%); display: flex; align-items: center; justify-content: center; font-size: 80px; }
+.card-content { padding: 24px; }
+.card-content h3 { font-size: 20px; margin-bottom: 8px; color: var(--dark); }
+.card-content p { color: var(--gray-500); margin-bottom: 16px; }
+.card-price { font-size: 24px; font-weight: 700; color: var(--primary); }
+.card-price span { font-size: 14px; font-weight: 400; color: var(--gray-500); }
+
+/* Order Button */
+.order-btn { display: inline-block; width: 100%; padding: 14px; background: var(--primary); color: white; text-align: center; text-decoration: none; border-radius: 10px; font-weight: 600; margin-top: 16px; transition: background 0.3s; }
+.order-btn:hover { background: var(--primary-dark); }
+
+/* Features */
+.features { background: white; padding: 60px 40px; }
+.features h2 { text-align: center; font-size: 32px; margin-bottom: 40px; }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+.feature { text-align: center; padding: 30px; }
+.feature-icon { width: 70px; height: 70px; background: var(--gray-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 16px; }
+.feature h3 { font-size: 18px; margin-bottom: 8px; }
+.feature p { color: var(--gray-500); font-size: 14px; }
+
+/* CTA */
+.cta { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); padding: 60px 40px; text-align: center; color: white; }
+.cta h2 { font-size: 36px; margin-bottom: 16px; }
+.cta p { font-size: 18px; opacity: 0.9; margin-bottom: 24px; }
+.cta .order-btn { background: white; color: var(--primary); width: auto; padding: 16px 40px; }
+
+/* Footer */
+footer { background: var(--dark); color: white; padding: 40px; text-align: center; }
+footer a { color: white; }
+
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .hero h1 { font-size: 32px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">✨ EditPro</a>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="edits.html">Edits</a></li>
+        <li><a href="poster.html">Posters</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="order.html" class="nav-cta">Order Now</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <h1>🎊 Invitation Cards</h1>
+    <p>Beautiful digital & printed invitation cards for all occasions</p>
+</section>
+
+<section class="services">
+    <h2>Our Invitation Services</h2>
+    <div class="grid">
+        <!-- Wedding Card -->
+        <div class="card">
+            <div class="card-image">💒</div>
+            <div class="card-content">
+                <h3>Wedding Invitation</h3>
+                <p>Elegant wedding cards with custom designs, animations & royal typography</p>
+                <div class="card-price">₹299 <span>starting</span></div>
+                <a href="order.html?service=wedding" class="order-btn">Order Now</a>
+            </div>
+        </div>
+        
+        <!-- Birthday Card -->
+        <div class="card">
+            <div class="card-image">🎂</div>
+            <div class="card-content">
+                <h3>Birthday Invitation</h3>
+                <p>Fun & colorful birthday invites with animations, GIFs & video options</p>
+                <div class="card-price">₹199 <span>starting</span></div>
+                <a href="order.html?service=birthday" class="order-btn">Order Now</a>
+            </div>
+        </div>
+        
+        <!-- Baby Shower -->
+        <div class="card">
+            <div class="card-image">👶</div>
+            <div class="card-content">
+                <h3>Baby Shower</h3>
+                <p>Sweet & adorable baby shower invitations with cute animations</p>
+                <div class="card-price">₹199 <span>starting</span></div>
+                <a href="order.html?service=babyshower" class="order-btn">Order Now</a>
+            </div>
+        </div>
+        
+        <!-- Corporate Event -->
+        <div class="card">
+            <div class="card-image">🏢</div>
+            <div class="card-content">
+                <h3>Corporate Event</h3>
+                <p>Professional business invitations for conferences, seminars & parties</p>
+                <div class="card-price">₹399 <span>starting</span></div>
+                <a href="order.html?service=corporate" class="order-btn">Order Now</a>
+            </div>
+        </div>
+        
+        <!-- Anniversary -->
+        <div class="card">
+            <div class="card-image">🥂</div>
+            <div class="card-content">
+                <h3>Anniversary Celebration</h3>
+                <p>Romantic anniversary invites with elegant designs & animations</p>
+                <div class="card-price">₹249 <span>starting</span></div>
+                <a href="order.html?service=anniversary" class="order-btn">Order Now</a>
+            </div>
+        </div>
+        
+        <!-- Custom -->
+        <div class="card">
+            <div class="card-image">✨</div>
+            <div class="card-content">
+                <h3>Custom Invitation</h3>
+                <p>Any special occasion - haldi, mehandi, sangeet, engagement & more</p>
+                <div class="card-price">₹299 <span>starting</span></div>
+                <a href="order.html?service=custom" class="order-btn">Order Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <h2>Why Choose Our Invitation Cards?</h2>
+    <div class="feature-grid">
+        <div class="feature">
+            <div class="feature-icon">🎬</div>
+            <h3>Video Invites</h3>
+            <p>Animated video invitations that stand out</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">📱</div>
+            <h3>WhatsApp Ready</h3>
+            <p>Perfect size for sharing on WhatsApp & Instagram</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🎨</div>
+            <h3>Custom Designs</h3>
+            <p>As per your theme, colors & preferences</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <h3>Quick Delivery</h3>
+            <p>Get your invites within 24-48 hours</p>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <h2>Ready to Create Your Invitation?</h2>
+    <p>Order now and get exclusive designs at amazing prices!</p>
+    <a href="order.html" class="order-btn">Place Order</a>
+</section>
+
+<footer>
+    <p>© 2025 Thakur.crea8tions. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
+

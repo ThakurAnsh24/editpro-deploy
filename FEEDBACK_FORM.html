@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rate Your Order - Thakur.crea8tions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 500px; margin: 0 auto; padding: 2rem; background: #f8fafc; }
+        .logo { text-align: center; margin-bottom: 2rem; }
+        .stars { font-size: 2rem; text-align: center; margin: 2rem 0; }
+        .star { color: #e2e8f0; cursor: pointer; margin: 0 0.2rem; transition: color 0.3s; }
+        .star.active { color: #fbbf24; }
+        input, textarea { width: 100%; padding: 1rem; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 1rem; box-sizing: border-box; }
+        button { background: #10b981; color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-size: 1.1rem; cursor: pointer; width: 100%; }
+        .success { background: #10b981; color: white; padding: 1rem; border-radius: 8px; text-align: center; }
+        .error { background: #ef4444; color: white; padding: 1rem; border-radius: 8px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <h1>⭐ Rate Your Edit</h1>
+        <p>Thakur.crea8tions</p>
+    </div>
+    
+    <form id="feedbackForm">
+        <input type="hidden" id="orderId" name="order_id">
+        <h3>How was your order #<span id="orderNumber"></span>?</h3>
+        
+        <div class="stars" id="ratingStars">
+            <span class="star" data-rating="1">⭐</span>
+            <span class="star" data-rating="2">⭐</span>
+            <span class="star" data-rating="3">⭐</span>
+            <span class="star" data-rating="4">⭐</span>
+            <span class="star" data-rating="5">⭐</span>
+        </div>
+        
+        <input type="text" id="feedbackText" name="feedback" placeholder="Your feedback (optional)...">
+        <button type="submit">Submit Rating</button>
+    </form>
+    
+    <div id="message"></div>
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('id');
+        if (orderId) {
+            document.getElementById('orderId').value = orderId;
+            document.getElementById('orderNumber').textContent = orderId;
+        }
+        
+        let currentRating = 0;
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', () => {
+                currentRating = star.dataset.rating;
+                document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
+                for (let i = 1; i <= currentRating; i++) {
+                    document.querySelector(`[data-rating="${i}"]`).classList.add('active');
+                }
+            });
+        });
+        
+        document.getElementById('feedbackForm').addEventListener('submit', async e => {
+            e.preventDefault();
+            if (currentRating === 0) {
+                alert('Please select a rating');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('order_id', orderId);
+            formData.append('rating', currentRating);
+            formData.append('feedback', document.getElementById('feedbackText').value);
+            
+            try {
+                const response = await fetch('/backend/save_feedback.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    document.getElementById('message').innerHTML = '<div class="success">Thank you! Rating saved. Admin will see your feedback.</div>';
+                    document.getElementById('feedbackForm').style.display = 'none';
+                } else {
+                    document.getElementById('message').innerHTML = '<div class="error">Error saving feedback. Please contact admin.</div>';
+                }
+            } catch (error) {
+                document.getElementById('message').innerHTML = '<div class="error">Network error. Please try again.</div>';
+            }
+        });
+    </script>
+</body>
+</html>
+

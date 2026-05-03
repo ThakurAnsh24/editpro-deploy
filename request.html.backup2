@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Project | Thakur.crea8tions</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        input, select, textarea { color: #1e293b !important; -webkit-text-fill-color: #1e293b !important; }
+        input::placeholder, textarea::placeholder { color: #64748b !important; }
+        input:focus, select:focus, textarea:focus { color: #0f172a !important; background-color: white !important; }
+        label { color: #1e293b !important; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-indigo-50 min-h-screen">
+    
+    <!-- Back Navigation -->
+    <div class="fixed top-6 left-6 z-50">
+        <a href="index.html" class="bg-white/80 backdrop-blur-md hover:bg-white shadow-lg rounded-2xl px-6 py-3 flex items-center gap-2 text-slate-700 font-medium hover:shadow-xl transition-all duration-300 border border-slate-200/50">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+            Back to Home
+        </a>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 py-12 md:py-20">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-8 py-4 rounded-3xl shadow-2xl mb-8">
+                <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center">
+                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m0 0h3m0 0V6m0 3h14"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold">Start Your Creative Project</h1>
+                    <p class="text-white/90 mt-1 text-lg">Video editing, posters, reels & more - Starting ₹149</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white/70 backdrop-blur-xl shadow-2xl rounded-4xl border border-white/50 overflow-hidden">
+            <form id="projectForm" enctype="multipart/form-data" class="p-8 md:p-12 max-w-3xl mx-auto">
+                
+                <!-- Step 1: Personal Info -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-10 h-10 bg-indigo-100 rounded-2xl flex items-center justify-center">
+                            <span class="text-xl font-bold text-indigo-600">1</span>
+                        </div>
+                        <h2 class="text-2xl font-bold">Your Details</h2>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-semibold mb-2">Full Name *</label>
+                            <input id="name" type="text" name="name" required class="w-full px-4 py-4 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all bg-white/50" placeholder="Enter your full name">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-semibold mb-2">Phone Number *</label>
+                            <input id="phone" type="tel" name="phone" required class="w-full px-4 py-4 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all bg-white/50" placeholder="9015353021">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-semibold mb-2">Email</label>
+                            <input id="email" type="email" name="email" class="w-full px-4 py-4 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all bg-white/50" placeholder="your@email.com">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Service Selection -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-10 h-10 bg-emerald-100 rounded-2xl flex items-center justify-center">
+                            <span class="text-xl font-bold text-emerald-600">2</span>
+                        </div>
+                        <h2 class="text-2xl font-bold">Service Selection</h2>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+<div class="md:col-span-2">
+                            <label for="mainService" class="block text-sm font-semibold mb-3">Main Service *</label>
+                            <select id="mainService" name="service_type" required onchange="updateSubServices()" class="w-full px-5 py-4 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 text-lg bg-white/50">
+                                <option value="">Select service type...</option>
+                                <option value="edit">🎬 Video Editing (from ₹199)</option>
+                                <option value="poster">🪧 Poster Design (from ₹149)</option>
+                                <option value="invitation">💌 Invitations/Cards (from ₹99)</option>
+                                <option value="scrapbook">📚 Scrapbooks (from ₹499)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="subService" class="block text-sm font-semibold mb-2">Sub-Service *</label>
+                            <select id="subService" name="sub_service" required onchange="updatePrice()" disabled class="w-full px-4 py-4 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all bg-white/50">
+                                <option value="">Select sub-service...</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="priceInput" class="block text-sm font-semibold mb-2">Price</label>
+                            <input id="priceInput" type="number" name="price" required readonly class="w-full px-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-2xl font-bold text-emerald-600">
+                        </div>
+                        <div>
+                            <label for="deliveryDate" class="block text-sm font-semibold mb-2">Delivery Date *</label>
+                            <input id="deliveryDate" type="date" name="delivery_date" required class="w-full px-4 py-4 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all bg-white/50">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Files -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-10 h-10 bg-blue-100 rounded-2xl flex items-center justify-center">
+                            <span class="text-xl font-bold text-blue-600">3</span>
+                        </div>
+                        <h2 class="text-2xl font-bold">Upload Files</h2>
+                    </div>
+                    <div>
+                        <label for="fileInput" class="block text-sm font-semibold mb-3 flex items-center gap-2">
+                            Raw Files * 
+                            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-medium" id="fileTypeHint">Videos/Images</span>
+                        </label>
+                        <div class="border-2 border-dashed border-slate-300 rounded-3xl p-8 hover:border-indigo-400 hover:bg-indigo-50/30 transition-all cursor-pointer group">
+                            <input id="fileInput" type="file" name="work_file[]" multiple class="hidden" required>
+                            <label for="fileInput" class="cursor-pointer w-full flex flex-col items-center justify-center text-center py-8 group-hover:scale-105 transition-all">
+                                <svg class="w-16 h-16 text-slate-400 mb-4 group-hover:text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 5v14m7-7H5"/>
+                                </svg>
+                                <div class="text-lg font-semibold text-slate-700 mb-2 group-hover:text-indigo-600">Click to upload or drag & drop</div>
+                                <div class="text-sm text-slate-500" id="fileCount">No files selected</div>
+                            </label>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-2 text-center" id="fileHelp">Multiple files OK - Max 500MB each</p>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-12">
+                    <label for="description" class="block text-sm font-semibold mb-3">Project Details *</label>
+                    <textarea id="description" name="description" required rows="5" class="w-full px-4 py-4 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all resize-vertical bg-white/50" placeholder="Tell us everything: footage details, style preferences, references, dimensions, revisions needed..."></textarea>
+                </div>
+
+<!-- Payment -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-10 h-10 bg-amber-100 rounded-2xl flex items-center justify-center">
+                            <span class="text-xl font-bold text-amber-600">4</span>
+                        </div>
+                        <h2 class="text-2xl font-bold">Payment</h2>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="payment" class="block text-sm font-semibold mb-2">Method *</label>
+                            <select id="payment" name="payment" required onchange="togglePaymentScreenshot()" class="w-full px-4 py-4 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-amber-500/20 focus:border-amber-500 transition-all bg-white/50">
+                                <option value="">Select payment</option>
+                                <option value="UPI">UPI (PhonePe/GPay)</option>
+                                <option value="Bank">Bank Transfer</option>
+                                <option value="Cash on Delivery">Cash on Delivery (+₹50)</option>
+                            </select>
+                        </div>
+                        <div id="paymentScreenshotContainer" class="hidden">
+                            <label for="paymentScreenshot" class="block text-sm font-semibold mb-2">Payment Screenshot *</label>
+                            <input id="paymentScreenshot" type="file" name="payment_screenshot" accept="image/*" class="w-full px-4 py-4 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-amber-500/20 focus:border-amber-500 transition-all bg-white/50">
+                            <p class="text-xs text-slate-500 mt-1">Screenshot of payment confirmation</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-6 bg-gradient-to-r from-emerald-50 to-indigo-50 border border-emerald-200 rounded-2xl">
+                        <h3 class="font-semibold mb-3">💰 UPI ID: A80editz@paytm</h3>
+                        <div class="grid md:grid-cols-2 gap-4 text-sm mb-4">
+                            <div><strong>Amount:</strong> <span id="amountDisplay">₹0</span></div>
+                            <div><strong>Instructions:</strong> Pay exact amount shown</div>
+                        </div>
+                        <img src="images/upi_qr_code.png" alt="UPI QR Code" class="w-32 h-32 mx-auto rounded-lg shadow-md">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-emerald-600 to-indigo-600 hover:from-emerald-700 hover:to-indigo-700 text-white font-bold py-6 px-8 rounded-3xl text-xl shadow-2xl hover:shadow-3xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3">
+                    <span id="submitText">🚀 Submit Project & Pay</span>
+                    <div class="loader hidden w-8 h-8 border-4 border-white/30 border-t-white rounded-full animate-spin" id="loader"></div>
+                </button>
+            </form>
+        </div>
+
+        <div id="toastContainer" class="fixed bottom-6 right-6 z-[1000] space-y-2"></div>
+    </div>
+
+    <script>
+const services = {
+            'edit': {
+                name: 'Video Editing',
+                subs: [
+                    {value: 'fitness_edit', name: 'Fitness Reels (₹199)', price: 199},
+                    {value: 'travel_edit', name: 'Travel Videos (₹299)', price: 299},
+                    {value: 'event_edit', name: 'Event Videos (₹399)', price: 399},
+                    {value: 'wedding_edit', name: 'Wedding Edits (₹499)', price: 499},
+                    {value: 'youtube_edit', name: 'YouTube Longform (₹599)', price: 599}
+                ],
+                accept: 'video/*',
+                hint: 'MP4, MOV (up to 500MB)'
+            },
+            'poster': {
+                name: 'Poster Design',
+                subs: [
+                    {value: 'event_poster', name: 'Event Poster (₹149)', price: 149},
+                    {value: 'fitness_poster', name: 'Fitness Poster (₹199)', price: 199},
+                    {value: 'fashion_poster', name: 'Fashion Poster (₹249)', price: 249},
+                    {value: 'booking_poster', name: 'Booking Poster (₹299)', price: 299}
+                ],
+                accept: 'image/*',
+                hint: 'JPG, PNG images'
+            },
+            'invitation': {
+                name: 'Invitations',
+                subs: [
+                    {value: 'wedding_invite', name: 'Wedding Invite (₹99)', price: 99},
+                    {value: 'birthday_invite', name: 'Birthday Invite (₹79)', price: 79},
+                    {value: 'event_invite', name: 'Event Invite (₹129)', price: 129}
+                ],
+                accept: 'image/*',
+                hint: 'Photos + text details'
+            },
+            'scrapbook': {
+                name: 'Scrapbooks',
+                subs: [
+                    {value: 'wedding_scrapbook', name: 'Wedding Scrapbook (₹499)', price: 499},
+                    {value: 'baby_scrapbook', name: 'Baby Scrapbook (₹399)', price: 399},
+                    {value: 'travel_scrapbook', name: 'Travel Scrapbook (₹599)', price: 599}
+                ],
+                accept: 'image/*',
+                hint: '50+ photos'
+            }
+        };
+
+        function updateSubServices() {
+            const mainService = document.getElementById('mainService').value;
+            const subSelect = document.getElementById('subService');
+            const priceInput = document.getElementById('priceInput');
+            const fileInput = document.getElementById('fileInput');
+            const hintSpan = document.getElementById('fileTypeHint');
+            const fileHelp = document.getElementById('fileHelp');
+            const amountSpan = document.getElementById('amountDisplay');
+            const deliveryInput = document.getElementById('deliveryDate');
+
+            if (!mainService || !services[mainService]) {
+                subSelect.disabled = true;
+                subSelect.innerHTML = '<option value="">Select sub-service...</option>';
+                priceInput.value = '';
+                amountSpan.textContent = '₹0';
+                fileInput.accept = '';
+                hintSpan.textContent = 'Videos/Images';
+                fileHelp.textContent = 'Multiple files OK';
+                return;
+            }
+
+            const service = services[mainService];
+            subSelect.innerHTML = '<option value="">Select sub-service...</option>' + service.subs.map(s => `<option value="${s.value}" data-price="${s.price}">${s.name}</option>`).join('');
+            subSelect.disabled = false;
+            fileInput.accept = service.accept;
+            hintSpan.textContent = service.hint;
+            fileHelp.textContent = service.name + ' files only';
+
+            const minDate = new Date(Date.now() + 48*60*60*1000).toISOString().split('T')[0];
+            deliveryInput.min = minDate;
+            priceInput.value = '';
+            amountSpan.textContent = '₹0';
+        }
+
+        function updatePrice() {
+            const subSelect = document.getElementById('subService');
+            const priceInput = document.getElementById('priceInput');
+            const amountSpan = document.getElementById('amountDisplay');
+            const selectedOption = subSelect.options[subSelect.selectedIndex];
+            if (selectedOption.dataset.price) {
+                const price = parseInt(selectedOption.dataset.price);
+                priceInput.value = price;
+                amountSpan.textContent = '₹' + price;
+            }
+        }
+
+        document.getElementById('fileInput').addEventListener('change', e => {
+            const files = e.target.files;
+            const totalSize = Array.from(files).reduce((sum, f) => sum + f.size, 0) / (1024*1024);
+            document.getElementById('fileCount').textContent = `${files.length} file${files.length > 1 ? 's' : ''} (${totalSize.toFixed(1)}MB)`;
+        });
+
+document.getElementById('projectForm').addEventListener('submit', async e => {
+            e.preventDefault();
+            const submitText = document.getElementById('submitText');
+            const loader = document.getElementById('loader');
+const form = document.getElementById('projectForm');
+            
+            // Show processing state
+            submitText.textContent = 'Processing Order...';
+            loader.classList.remove('hidden');
+            
+// Get form data - all fields including phone
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('mainService').value;
+            const subService = document.getElementById('subService').value;
+            const description = document.getElementById('description').value;
+            const price = document.getElementById('priceInput').value;
+            const deliveryDate = document.getElementById('deliveryDate').value;
+            const payment = document.getElementById('payment').value;
+            const email = document.getElementById('email')?.value || '';
+            
+            const message = `🙏 🙏 Thank You for Choosing Us! I want to place an order:\n\n` +
+                `Name: ${name}\n` +
+                `Phone: ${phone}\n` +
+                `Service: ${service}\n` +
+                `Sub-Service: ${subService}\n` +
+                `Price: ₹${price}\n` +
+                `Details: ${description}\n\n` +
+                `Please confirm my order!`;
+            
+// Store order data locally
+            const orderData = {
+                name: name,
+                phone: phone,
+                service: service,
+                subService: subService,
+                price: price,
+                description: description,
+                orderId: 'TP' + Date.now().toString().slice(-6)
+            };
+            localStorage.setItem('lastOrder', JSON.stringify(orderData));
+            
+            // Show professional Thank You message (no WhatsApp redirect)
+showThankYouModal(orderData);
+            
+setTimeout(() => {
+                submitText.textContent = '🚀 Submit Project & Pay';
+                loader.classList.add('hidden');
+            }, 2000);
+        });
+
+function showToast(msg, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `p-6 rounded-2xl shadow-2xl backdrop-blur-md border max-w-md mx-auto transform translate-y-12 transition-all duration-300 fixed bottom-6 right-6 z-[1000] ${
+                type === 'success' ? 'bg-emerald-500/95 text-white border-emerald-300' :
+                type === 'error' ? 'bg-red-500/95 text-white border-red-300' : 'bg-indigo-500/95 text-white border-indigo-300'
+            }`;
+            toast.textContent = msg;
+            document.getElementById('toastContainer').appendChild(toast);
+            setTimeout(() => toast.style.transform = 'translateY(0)', 100);
+            setTimeout(() => toast.remove(), 5000);
+        }
+
+function showThankYouModal(orderData) {
+            const modal = document.createElement('div');
+            modal.id = 'thankYouModal';
+            modal.className = 'fixed inset-0 bg-black/60 backdrop-blur-sm z-[2000] flex items-center justify-center p-4';
+            modal.innerHTML = `
+                <div class="bg-white rounded-4xl p-8 md:p-12 max-w-lg w-full text-center shadow-3xl animate-[scale_0.3s_ease-out]">
+                    <div class="w-24 h-24 bg-gradient-to-r from-emerald-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-[bounce_1s_ease-in-out]">
+                        <svg class="w-14 h-14 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-3">🙏 Thank You for Choosing Us!</h2>
+                    <p class="text-lg text-slate-600 mb-2">Your order has been received.</p>
+                    <p class="text-slate-500 text-sm mb-6">We truly appreciate your trust in our services.</p>
+                    <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-4 mb-6 border border-indigo-100">
+                        <div class="grid grid-cols-2 gap-4 text-left">
+                            <div><p class="text-xs text-slate-500">Order ID</p><p class="text-lg font-bold text-indigo-600">${orderData.orderId}</p></div>
+                            <div><p class="text-xs text-slate-500">Amount</p><p class="text-lg font-bold text-emerald-600">₹${orderData.price}</p></div>
+                            <div><p class="text-xs text-slate-500">Service</p><p class="text-sm font-medium text-slate-700">${orderData.subService}</p></div>
+                            <div><p class="text-xs text-slate-500">Status</p><p class="text-sm font-medium text-amber-600">Pending Payment</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
+                        <p class="text-sm text-amber-800 font-medium">💳 Next Step: Complete your payment via UPI to confirm the order</p>
+                    </div>
+                    <p class="text-slate-400 text-xs mb-6">We'll contact you within 2 hours after payment confirmation.</p>
+                    <a href="index.html" class="inline-block bg-gradient-to-r from-emerald-600 to-indigo-600 hover:from-emerald-700 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all">
+                        🏠 Back to Home
+                    </a>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+document.getElementById('deliveryDate').min = new Date(Date.now() + 24*60*60*1000).toISOString().split('T')[0];
+
+        function togglePaymentScreenshot() {
+            const payment = document.getElementById('payment').value;
+            const container = document.getElementById('paymentScreenshotContainer');
+            const screenshot = document.getElementById('paymentScreenshot');
+            if (payment === 'UPI' || payment === 'Bank') {
+                container.classList.remove('hidden');
+                screenshot.setAttribute('required', 'required');
+            } else {
+                container.classList.add('hidden');
+                screenshot.removeAttribute('required');
+            }
+        }
+
+        document.getElementById('projectForm').addEventListener('submit', async e => {
+            e.preventDefault();
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const submitText = document.getElementById('submitText');
+            const loader = document.getElementById('loader');
+            const form = e.target;
+            
+            // Show processing state
+            submitBtn.disabled = true;
+            submitText.textContent = 'Processing Order...';
+            loader.classList.remove('hidden');
+            
+            try {
+                // Create FormData object for file upload
+                const formData = new FormData();
+                
+                // Add text fields
+                formData.append('name', document.getElementById('name').value);
+                formData.append('phone', document.getElementById('phone').value);
+                formData.append('service_type', document.getElementById('mainService').value);
+                formData.append('sub_service', document.getElementById('subService').value);
+                formData.append('delivery_date', document.getElementById('deliveryDate').value);
+                formData.append('price', document.getElementById('priceInput').value);
+                formData.append('payment', document.getElementById('payment').value);
+                formData.append('description', document.getElementById('description').value);
+                const emailField = document.getElementById('email');
+                if (emailField && emailField.value) formData.append('email', emailField.value);
+                
+                // Add files
+                const fileInput = document.getElementById('work_file[]');
+                if (fileInput && fileInput.files.length > 0) {
+                    for (let i = 0; i < fileInput.files.length; i++) {
+                        formData.append('work_file[]', fileInput.files[i]);
+                    }
+                }
+                
+                // Add payment screenshot for non-COD payments
+                const payment = document.getElementById('payment').value;
+                const screenshotInput = document.getElementById('paymentScreenshot');
+                if ((payment === 'UPI' || payment === 'Bank') && screenshotInput && screenshotInput.files.length > 0) {
+                    formData.append('payment_screenshot', screenshotInput.files[0]);
+                }
+                
+                // Send to backend
+                const response = await fetch('backend/save_order.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Store order data locally for reference
+                    const orderData = {
+                        orderId: result.order_id,
+                        name: result.name,
+                        phone: document.getElementById('phone').value,
+                        service: result.sub_service,
+                        price: result.price,
+                        description: document.getElementById('description').value
+                    };
+                    localStorage.setItem('lastOrder', JSON.stringify(orderData));
+                    
+                    // Show success modal
+                    showThankYouModal(orderData);
+                    showToast('Order submitted successfully!', 'success');
+                } else {
+                    showToast(result.error || 'Failed to submit order', 'error');
+                }
+            } catch (error) {
+                console.error('Order submission error:', error);
+                showToast('Error submitting order. Please try again.', 'error');
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitText.textContent = '🚀 Submit Project & Pay';
+                loader.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

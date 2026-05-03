@@ -1,0 +1,86 @@
+
+/* Editor Login Modern Styling - Purple Theme */
+.editor-login {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #8b5cf6, #a855f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.login-container {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 24px;
+  padding: 48px 40px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 32px 64px rgba(0,0,0,0.3);
+}
+
+.editor-login .login-header h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #ffffff, #e9d5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 16px;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  background: rgba(255,255,255,0.1);
+  color: white;
+  margin-bottom: 20px;
+}
+
+.form-group input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #c084fc;
+  box-shadow: 0 0 0 4px rgba(192,132,252,0.2);
+  transform: translateY(-2px);
+}
+
+.btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #8b5cf6, #a855f7);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 12px 32px rgba(139,92,246,0.4);
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(139,92,246,0.5);
+}
+
+.error {
+  background: rgba(239,68,68,0.2);
+  border: 1px solid rgba(239,68,68,0.4);
+  color: #fecaca;
+  padding: 16px 20px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+}
+

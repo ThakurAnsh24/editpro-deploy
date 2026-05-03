@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Feed | Thakur.crea8tions</title>
+<link rel="icon" type="image/svg+xml" href="images/logo.svg">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ===== INSTAGRAM FEED STYLES ===== */
+body {
+    background:#f4f6f9;
+}
+
+.page-header {
+    background:linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    padding:50px 20px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.page-header::before {
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:radial-gradient(circle at 20% 80%, rgba(225,48,108,0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(193,53,132,0.2) 0%, transparent 50%);
+}
+
+.instagram-icon {
+    width:60px;
+    height:60px;
+    margin-bottom:15px;
+    position:relative;
+    z-index:1;
+}
+
+.instagram-icon svg {
+    width:100%;
+    height:100%;
+    fill:#fff;
+}
+
+.page-header h1 {
+    color:#fff;
+    font-size:36px;
+    font-weight:600;
+    margin-bottom:10px;
+    position:relative;
+    z-index:1;
+}
+
+.page-header .instagram-link {
+    color:#E1306C;
+    font-size:18px;
+    text-decoration:none;
+    font-weight:600;
+    position:relative;
+    z-index:1;
+}
+
+.page-header .instagram-link:hover {
+    text-decoration:underline;
+}
+
+/* CATEGORY FILTER */
+.filter-container {
+    max-width:1200px;
+    margin:30px auto 20px;
+    padding:0 20px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+}
+
+.filter-btn {
+    padding:12px 24px;
+    border:2px solid #E1306C;
+    background:transparent;
+    color:#E1306C;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background:#E1306C;
+    color:#fff;
+    box-shadow:0 5px 20px rgba(225,48,108,0.4);
+}
+
+/* INSTAGRAM GRID */
+.feed-container {
+    max-width:1200px;
+    margin:auto;
+    padding:20px 20px 60px;
+}
+
+.feed-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
+    gap:20px;
+}
+
+.feed-item {
+    border-radius:16px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    transition:all 0.4s ease;
+    text-decoration:none;
+    color:inherit;
+}
+
+.feed-item:hover {
+    transform:translateY(-8px);
+    box-shadow:0 20px 50px rgba(225,48,108,0.2);
+}
+
+.feed-item.hidden {
+    display:none;
+}
+
+.feed-image {
+    position:relative;
+    aspect-ratio:1;
+    overflow:hidden;
+}
+
+.feed-image img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform 0.4s ease;
+}
+
+.feed-item:hover .feed-image img {
+    transform:scale(1.08);
+}
+
+.instagram-badge {
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    padding:6px 12px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.instagram-badge svg {
+    width:14px;
+    height:14px;
+    fill:#fff;
+}
+
+.instagram-badge span {
+    color:#fff;
+    font-size:11px;
+    font-weight:600;
+}
+
+.feed-overlay {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(225,48,108,0.3);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    transition:opacity 0.3s ease;
+}
+
+.feed-item:hover .feed-overlay {
+    opacity:1;
+}
+
+.feed-overlay span {
+    background:#fff;
+    padding:10px 20px;
+    border-radius:25px;
+    font-weight:600;
+    font-size:14px;
+    color:#E1306C;
+}
+
+.feed-info {
+    padding:18px;
+}
+
+.feed-info h3 {
+    font-size:15px;
+    color:#111;
+    margin-bottom:5px;
+}
+
+.feed-info .category {
+    font-size:12px;
+    color:#E1306C;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+/* FOLLOW BUTTON */
+.follow-section {
+    text-align:center;
+    padding:40px 20px;
+    background:#fff;
+    margin-top:20px;
+}
+
+.follow-btn {
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:16px 40px;
+    background:linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color:#fff;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:16px;
+    font-weight:600;
+    transition:all 0.3s ease;
+}
+
+.follow-btn:hover {
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(225,48,108,0.4);
+}
+
+.follow-btn svg {
+    width:20px;
+    height:20px;
+    fill:#fff;
+}
+
+/* Responsive */
+@media (max-width:768px) {
+    .page-header h1 {
+        font-size:28px;
+    }
+    
+    .filter-btn {
+        padding:10px 16px;
+        font-size:13px;
+    }
+    
+    .feed-grid {
+        grid-template-columns:repeat(auto-fill, minmax(150px, 1fr));
+        gap:12px;
+    }
+    
+    .feed-info {
+        padding:12px;
+    }
+    
+    .feed-info h3 {
+        font-size:13px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <img src="images/logo.svg" alt="Logo">
+            <span>Thakur.crea8tions</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="edits.html">Edits</a></li>
+            <li><a href="poster.html">Posters</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="order.html" class="nav-cta">Order Now</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+
+<header class="page-header">
+    <div class="instagram-icon">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+    </div>
+    <h1>Our Instagram Feed</h1>
+    <a href="https://www.instagram.com/thakur.crea8tions" target="_blank" rel="noopener" class="instagram-link">@thakur.crea8tions</a>
+</header>
+
+<!-- FILTER BUTTONS -->
+<div class="filter-container">
+    <button class="filter-btn active" data-filter="all">All Posts</button>
+    <button class="filter-btn" data-filter="reels">Reels</button>
+    <button class="filter-btn" data-filter="wedding">Wedding</button>
+    <button class="filter-btn" data-filter="event">Events</button>
+    <button class="filter-btn" data-filter="fitness">Fitness</button>
+    <button class="filter-btn" data-filter="fashion">Fashion</button>
+    <button class="filter-btn" data-filter="travel">Travel</button>
+</div>
+
+<!-- INSTAGRAM FEED GRID -->
+<div class="feed-container">
+    <div class="feed-grid" id="feedGrid">
+        
+        <!-- Wedding Posts -->
+        <a href="https://www.instagram.com/thakur.crea8tions" target="_blank" rel="noopener" class="feed-item" data-category="wedding">
+            <div class="feed-image">
+                <img src="images/wedding.png" alt="Wedding Edit">
+                <div class="instagram-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
+                    <span>IG</span>
+                </div>
+                <div class="feed-overlay">
+                    <span>View on Instagram</span>
+                </div>
+            </div>
+            <div class="feed-info">
+                <h3>Wedding Celebration Edit</h3>
+                <span class="category">Wedding</span>
+            </div>
+        </a>
+
+        <!-- Event Posts -->
+        <a href="https://www.instagram.com/thakur.crea8tions" target="_blank" rel="noopener" class="feed-item" data-category="event">
+            <div class="feed-image">
+                <img src="images/event.png" alt="Event Coverage">
+                <div class="instagram-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
+                    <span>IG</span>
+                </div>
+                <div class="feed-overlay">
+                    <span>View on Instagram</span>
+                </div>
+            </div>
+            <div class="feed-info">
+                <h3>Event Coverage</h3>
+                <span class="category">Events</span>
+            </div>
+        </a>
+
+        <!-- Fashion Posts -->
+        <a href="https://www.instagram.com/thakur.crea8tions" target="_blank" rel="noopener" class="feed-item" data-category="fashion">
+            <div class="feed-image">
+                <img src="images/fashion.png" alt="Fashion Shoot">
+                <div class="instagram-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
+                    <span>IG</span>
+                </div>
+                <div class="feed-overlay">
+                    <span>View on Instagram</span>
+                </div>
+            </div>
+            <div class="feed-info">
+                <h3>Fashion Shoot</h3>
+                <span class="category">Fashion</span>
+            </div>
+        </a>
+
+        <!-- Fitness Posts -->
+        <a href="https://www.instagram.com/thakur.crea8tions" target="_blank" rel="noopener" class="feed-item" data-category="fitness">
+            <div class="feed-image">
+                <img src="images/fitness.png" alt="Fitness Content">
+                <div class="instagram-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
+                    <span>IG</span>
+                </div>
+                <div class="feed-overlay">
+                    <span>View on Instagram</span>
+                </div>
+            </div>
+            <div class="feed-info">
+                <h3>Fitness Content</h3>
+                <span class="category">Fitness</span>
+            </div>
+        </a>
+
+        <!-- Travel Posts -->
+        <a href="https://www.instagram.com/thakur.crea8tions" target="_blank" rel="noopener" class="feed-item" data-category="travel">
+            <div class="feed-image">
+                <img src="images/travel.png" alt="Travel Video">
+                <div class="instagram-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
+                    <span>IG</span>
+                </div>
+                <div class="feed-overlay">
+                    <span>View on Instagram</span>
+                </div>
+            </div>
+            <div class="feed-info">
+                <h3>Travel Edit</h3>
+                <span class="category">Travel</span>
+            </div>
+        </a>
+
+        <!-- Reels Posts -->
+        <a href="https://www.instagram.com/thakur.crea8tions" target="_blank" rel="noopener" class="feed-item" data-category="reels">
+            <div class="feed-image">
+                <img src="images/edits.png" alt="Instagram Reel">
+                <div class="instagram-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
+                    <span>IG</span>
+                </div>
+                <div class="feed-overlay">
+                    <span>View on Instagram</span>
+                </div>
+            </div>
+            <div class="feed-info">
+                <h3>Promotional Reel</h3>
+                <span class="category">Reels</span>
+            </div>
+        </a>
+
+        <!-- Booking Posts -->
+        <a href="https://www.instagram.com/thakur.crea8tions" target="_blank" rel="noopener" class="feed-item" data-category="event">
+            <div class="feed-image">
+                <img src="images/booking.png" alt="Booking Preview">
+                <div class="instagram-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
+                    <span>IG</span>
+                </div>
+                <div class="feed-overlay">
+                    <span>View on Instagram</span>
+                </div>
+            </div>
+            <div class="feed-info">
+                <h3>Booking Preview</h3>
+                <span class="category">Events</span>
+            </div>
+        </a>
+
+        <!-- Festival Posts -->
+        <a href="https://www.instagram.com/thakur.crea8tions" target="_blank" rel="noopener" class="feed-item" data-category="event">
+            <div class="feed-image">
+                <img src="images/festival.png" alt="Festival Event">
+                <div class="instagram-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
+                    <span>IG</span>
+                </div>
+                <div class="feed-overlay">
+                    <span>View on Instagram</span>
+                </div>
+            </div>
+            <div class="feed-info">
+                <h3>Festival Event</h3>
+                <span class="category">Events</span>
+            </div>
+        </a>
+
+    </div>
+</div>
+
+<!-- FOLLOW SECTION -->
+<div class="follow-section">
+    <a href="https://www.instagram.com/thakur.crea8tions" target="_blank" rel="noopener" class="follow-btn">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
+        Follow on Instagram
+    </a>
+</div>
+
+<a href="index.html" class="back" style="text-align:center;display:block;margin:40px 0;text-decoration:none;color:#6c63ff;font-weight:600;">← Back to Home</a>
+
+<script>
+/* ===== MOBILE NAVIGATION ===== */
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+}
+
+/* ===== FILTER FUNCTIONALITY ===== */
+const filterBtns = document.querySelectorAll('.filter-btn');
+const feedItems = document.querySelectorAll('.feed-item');
+
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const filter = btn.dataset.filter;
+        
+        // Filter items with animation
+        feedItems.forEach((item, index) => {
+            const category = item.dataset.category;
+            
+            if (filter === 'all' || category === filter) {
+                item.classList.remove('hidden');
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    item.style.transition = 'all 0.4s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 50);
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+    });
+});
+
+console.log('Instagram feed page loaded successfully');
+</script>
+
+</body>
+</html>
+

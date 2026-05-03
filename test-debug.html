@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Test</title>
+</head>
+<body>
+    <h1>Testing Server Connection</h1>
+    <div id="results"></div>
+    <script>
+        async function test() {
+            const results = document.getElementById('results');
+            
+            try {
+                // Test 1: ping.php
+                results.innerHTML += '<p>Testing ping.php...</p>';
+                const response1 = await fetch('backend/ping.php');
+                
+                // Parse response text directly
+                const responseText1 = await response1.text();
+                
+                // Try to extract JSON from response
+                let data1;
+                try {
+                    data1 = JSON.parse(responseText1);
+                } catch (e) {
+                    // Log server response for debugging
+                    console.error('Server response:', responseText1);
+                    results.innerHTML += `<p style="color:red">Failed to parse JSON response</p>`;
+                    results.innerHTML += `<p>Raw response: ${responseText1}</p>`;
+                    return;
+                }
+                
+                results.innerHTML += `<p>Response: ${JSON.stringify(data1)}</p>`;
+                results.innerHTML += `<p>Status: ${response1.ok}</p>`;
+                
+                // Test 2: save_order.php with minimal data
+                results.innerHTML += '<p>Testing save_order.php...</p>';
+                const formData = new FormData();
+                formData.append('name', 'Test');
+                formData.append('phone', '1234567890');
+                formData.append('service_type', 'edit');
+                formData.append('sub_service', 'reel_edit');
+                formData.append('delivery_date', '2026-01-15');
+                formData.append('price', '499');
+                formData.append('payment', 'GPay');
+                
+                const response2 = await fetch('backend/save_order.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                // Parse response text directly
+                const responseText2 = await response2.text();
+                
+                // Try to extract JSON from response
+                let data2;
+                try {
+                    data2 = JSON.parse(responseText2);
+                } catch (e) {
+                    // Log server response for debugging
+                    console.error('Server response:', responseText2);
+                    results.innerHTML += `<p style="color:red">Failed to parse JSON response</p>`;
+                    results.innerHTML += `<p>Raw response: ${responseText2}</p>`;
+                    return;
+                }
+                
+                results.innerHTML += `<p>Response: ${JSON.stringify(data2)}</p>`;
+                results.innerHTML += `<p>Status: ${response2.ok}</p>`;
+                
+            } catch (error) {
+                console.error('Request failed:', error);
+                results.innerHTML += `<p style="color:red">Error: ${error.message}</p>`;
+                results.innerHTML += `<p style="color:red">Error name: ${error.name}</p>`;
+            }
+        }
+        test();
+    </script>
+</body>
+</html>
+

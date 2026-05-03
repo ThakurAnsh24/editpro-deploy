@@ -1,0 +1,70 @@
+/* Header & Footer Only - No Global Impact */
+
+.main-nav {
+  background: rgba(17, 24, 39, 0.95);
+  backdrop-filter: blur(20px);
+  position: fixed;
+  top: 4rem;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.main-nav.scrolled {
+  background: rgba(17, 24, 39, 0.98);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.staff-link {
+  background: rgba(30, 58, 138, 0.4);
+  border: 1px solid rgba(59, 130, 246, 0.5);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.staff-link:hover {
+  background: #3b82f6;
+}
+
+footer {
+  background: #1e3a8a;
+  color: white;
+  padding: 3rem 0 1rem;
+  border-top: 1px solid #1e40af;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.footer-section a {
+  color: #9ca3af;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.footer-section a:hover {
+  color: #3b82f6;
+}
+

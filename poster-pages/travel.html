@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Travel & Tour Posters | Thakur.crea8tions</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"Inter","Segoe UI",Arial,sans-serif;
+    background:#0f0f0f;
+    color:#fff;
+}
+
+/* HEADER */
+header{
+    text-align:center;
+    padding:40px 20px;
+}
+
+header h1{
+    font-size:30px;
+    font-weight:600;
+}
+
+header p{
+    margin-top:6px;
+    color:#aaa;
+}
+
+/* GALLERY GRID */
+.gallery{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px 80px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+}
+
+/* POSTER CARD */
+.poster{
+    border-radius:18px;
+    overflow:hidden;
+    background:#111;
+    cursor:pointer;
+    box-shadow:0 12px 30px rgba(0,0,0,0.4);
+}
+
+.poster img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .45s ease;
+}
+
+.poster:hover img{
+    transform:scale(1.1);
+}
+
+/* BACK BUTTON */
+.back{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    background:#fff;
+    color:#000;
+    padding:12px 22px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Travel & Tour Posters</h1>
+    <p>Holiday • Adventure • Resort • Travel Packages</p>
+</header>
+
+<section class="gallery">
+
+    <div class="poster">
+        <img src="../images/travel/travel1.png" alt="Travel Poster 1">
+    </div>
+
+    <div class="poster">
+        <img src="../images/travel/travel2.png" alt="Travel Poster 2">
+    </div>
+
+    <div class="poster">
+        <img src="../images/travel/travel3.png" alt="Travel Poster 3">
+    </div>
+
+    <div class="poster">
+        <img src="../images/travel/travel4.jpeg" alt="Travel Poster 4">
+    </div>
+
+</section>
+
+<a href="../poster.html" class="back">⬅ Back</a>
+
+</body>
+</html>

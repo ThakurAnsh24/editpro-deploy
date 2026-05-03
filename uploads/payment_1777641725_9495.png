@@ -1,0 +1,8 @@
+# Placeholder - Replace with actual QR code image
+# You can generate a UPI QR code using:
+# 1. Any UPI app (Google Pay, PhonePe, Paytm)
+# 2. Online QR code generators
+# 3. Your bank app
+
+# For now, the page will show a placeholder icon
+echo "QR code placeholder created - add your actual QR code image"

@@ -1,0 +1,842 @@
+/* EditPro Pro Landing - Figma Style 2024 - FIXED */
+:root {
+  --primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  --primary-glow: 0 0 40px rgba(99,102,241,0.6);
+  --bg-hero: radial-gradient(ellipse at top, #1e1b4b 0%, #0f0a2a 70%);
+  --glass: rgba(255,255,255,0.08);
+  --shadow-pro: 0 35px 80px rgba(0,0,0,0.4);
+  --text-primary: white;
+  --text-secondary: rgba(255,255,255,0.7);
+  --border-glass: rgba(255,255,255,0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-hero);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Preloader */
+.preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-hero);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+.logo-spin {
+  font-size: clamp(3rem, 15vw, 6rem);
+  font-weight: 900;
+  background: var(--primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.progress-ring { margin-top: 2rem; }
+.progress-circle {
+  stroke-dasharray: 226;
+  stroke-dashoffset: 226;
+  transition: stroke-dashoffset 0.35s cubic-bezier(0.4,0,0.2,1);
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+/* Scroll Progress */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: var(--primary);
+  z-index: 10000;
+  transition: width 0.2s ease;
+}
+
+/* Top Bar */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0; right: 0;
+  background: rgba(15,23,42,0.95);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  padding: 0.75rem 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border-glass);
+}
+.top-contact, .social-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.top-contact { padding-left: 2rem; }
+.social-links { padding-right: 2rem; }
+.top-contact a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s;
+}
+.top-contact a:hover { color: var(--text-primary); }
+
+/* Main Nav */
+.main-nav {
+  position: fixed;
+  top: 4rem;
+  left: 0; right: 0;
+  background: rgba(15,23,42,0.95);
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  padding: 1rem 0;
+  z-index: 99;
+  border-bottom: 1px solid var(--border-glass);
+}
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo {
+  font-size: 1.8rem;
+  font-weight: 900;
+  background: var(--primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+  align-items: center;
+}
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s;
+  position: relative;
+}
+.nav-links a.active { color: var(--text-primary); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s;
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-links a:hover { color: var(--text-primary); }
+.staff-link {
+  background: var(--glass);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  border: 1px solid var(--border-glass);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  margin-left: 1rem;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+.staff-link:hover {
+  background: rgba(99,102,241,0.2);
+  border-color: #6366f1;
+  transform: translateY(-2px);
+  color: var(--text-primary);
+}
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+.nav-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--text-primary);
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: 10rem;
+}
+.hero-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.hero-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(99,102,241,0.1);
+  animation: float 6s ease-in-out infinite;
+}
+.hero-shape:nth-child(1) { width: 300px; height: 300px; top: 20%; left: 10%; animation-delay: 0s; }
+.hero-shape:nth-child(2) { width: 200px; height: 200px; top: 60%; right: 10%; animation-delay: 2s; }
+.hero-shape:nth-child(3) { width: 150px; height: 150px; bottom: 20%; left: 20%; animation-delay: 4s; }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  z-index: 2;
+}
+.hero-title {
+  font-size: clamp(4rem, 10vw, 7rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+.hero-title .gradient-text {
+  background: var(--primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero p {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  max-width: 650px;
+}
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 1.25rem 2.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+  cursor: pointer;
+  border-radius: 50px;
+}
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-lg);
+}
+.btn-primary:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 40px 80px rgba(99,102,241,0.5);
+}
+.btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid var(--border-glass);
+}
+.btn-secondary:hover {
+  background: var(--glass);
+  border-color: #6366f1;
+  transform: translateY(-3px);
+}
+.hero-stats {
+  display: flex;
+  gap: 4rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.stat {
+  text-align: center;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.2s forwards;
+}
+.stat-number {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 900;
+  display: block;
+}
+.stat-label {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Container */
+.container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+.section-header h2 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+  background: var(--primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.section-header p {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Services */
+.services { padding: 100px 0; }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 3rem;
+}
+.service-card {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass);
+  border-radius: 24px;
+  padding: 3.5rem 2rem;
+  transition: all 0.5s;
+  text-align: center;
+}
+.service-card:hover {
+  transform: translateY(-15px);
+  border-color: #6366f1;
+  box-shadow: var(--shadow-lg);
+}
+.service-icon {
+  width: 100px;
+  height: 100px;
+  background: var(--primary);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 2.5rem;
+  box-shadow: 0 20px 40px rgba(99,102,241,0.3);
+}
+.service-card h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+.service-price {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #6366f1;
+  display: block;
+  margin: 1.5rem 0;
+}
+.btn.small { padding: 0.75rem 1.5rem; font-size: 0.9rem; }
+
+/* How It Works */
+.how-it-works { background: rgba(255,255,255,0.02); padding: 100px 0; }
+.steps-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.step {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+.step-number {
+  width: 80px;
+  height: 80px;
+  background: var(--primary);
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+.step-connector {
+  flex: 1;
+  height: 4px;
+  background: var(--glass);
+  position: relative;
+}
+.step-connector::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--primary);
+  animation: lineGrow 2s ease infinite;
+}
+@keyframes lineGrow { 0% { width: 0%; } 50% { width: 100%; } }
+
+/* Testimonials */
+.testimonials { padding: 100px 0; }
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+.testimonial-card {
+  background: var(--glass);
+  padding: 2.5rem;
+  border-radius: 20px;
+  text-align: center;
+}
+.testimonial-avatar {
+  width: 70px; height: 70px;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  background: var(--primary);
+}
+.testimonial-text {
+  font-style: italic;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Contact Form */
+.quick-contact { padding: 100px 0; }
+.contact-form {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  padding: 3rem;
+  border-radius: 24px;
+  border: 1px solid var(--border-glass);
+}
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  padding: 1.25rem;
+  background: rgba(255,255,255,0.05);
+  border: 2px solid var(--border-glass);
+  border-radius: 16px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+.form-group input:focus {
+  border-color: #6366f1;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
+}
+.submit-btn {
+  width: 100%;
+  background: var(--primary);
+  color: white;
+  padding: 1.5rem;
+  border: none;
+  border-radius: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.submit-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+/* FAQ */
+.faq { padding: 100px 0; }
+.faq-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.faq-item {
+  background: var(--glass);
+  margin-bottom: 1rem;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.faq-item:hover { transform: translateY(-2px); }
+.faq-question {
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s;
+  padding: 0 2rem;
+}
+.faq-item.active .faq-answer { max-height: 200px; padding-bottom: 1.5rem; }
+
+/* CTA */
+.cta { padding: 100px 0; text-align: center; }
+.cta-buttons { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-toggle { display: flex; }
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: rgba(15,23,42,0.98);
+    flex-direction: column;
+    padding-top: 8rem;
+    transition: right 0.3s;
+  }
+  .nav-links.active { right: 0; }
+  .hero-buttons, .cta-buttons { flex-direction: column; align-items: stretch; }
+  section { padding: 60px 1rem; }
+}
+
+/* Mobile Nav Toggle */
+.nav-toggle.active span:nth-child(1) { transform: rotate(-45deg) translate(-6px, 6px); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: rotate(45deg) translate(-6px, -6px); }
+</style>
+</head>
+<body>
+<!-- COMPLETE ORIGINAL + PRO THEME -->
+<!-- PRELOADER -->
+<div class="preloader" id="preloader">
+  <div class="logo-spin">T</div>
+  <div class="progress-ring">
+    <svg width="80" height="80">
+      <circle cx="40" cy="40" r="36" fill="none" stroke="#334155" stroke-width="4"/>
+      <circle cx="40" cy="40" r="36" fill="none" stroke="#6366f1" stroke-width="4" stroke-linecap="round" class="progress-circle"/>
+    </svg>
+  </div>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- CURSOR -->
+<div class="custom-cursor" id="customCursor"></div>
+
+<!-- TOAST -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-contact">
+    <a href="mailto:A80editz@gmail.com" aria-label="Email">
+      <img src="images/gmail.svg" alt="Email">
+      <span>A80editz@gmail.com</span>
+    </a>
+    <a href="tel:+919015353021" aria-label="Call">
+      <img src="images/phone.svg" alt="Phone">
+      <span>+91 90153 53021</span>
+    </a>
+  </div>
+  <div class="social-links">
+    <a href="https://www.instagram.com/thakur.crea8tions" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 2.75A1.25 1.25 0 0 1 4.25 1.5h15.5a1.25 1.25 0 0 1 1.25 1.25v15.5a1.25 1.25 0 0 1 -1.25 1.25H4.25a1.25 1.25 0 0 1 -1.25 -1.25V2.75Zm0 1.25v15.5a.75 .75 0 0 0 .75 .75h15.5a.75 .75 0 0 0 .75 -.75V4a.75 .75 0 0 0 -.75 -.75H4.25a.75 .75 0 0 0 -.75 .75ZM12 6.25a5.75 5.75 0 1 1 0 11.5a5.75 5.75 0 0 1 0 -11.5Zm0 1.75a4 4 0 1 0 0 8a4 4 0 0 0 0 -8Zm1.5 5.75a1.5 1.5 0 1 1 -3 0a1.5 1.5 0 0 1 3 0Z"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="main-nav" id="mainNav">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <a href="index.html" class="nav-logo">Thakur.crea8tions</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="edits.html">Edits</a></li>
+      <li><a href="poster.html">Posters</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="track.html">Track</a></li>
+      <li class="flex gap-2">
+        <a href="backend/admin_login.php" class="staff-link px-4 py-2 rounded-lg">Admin</a>
+        <a href="backend/editor_login.php" class="staff-link px-4 py-2 rounded-lg ml-2">Editor</a>
+      </li>
+    </ul>
+    <button class="nav-toggle" id="navToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-shapes">
+    <div class="hero-shape" style="--delay: 0s"></div>
+    <div class="hero-shape" style="--delay: 2s"></div>
+    <div class="hero-shape" style="--delay: 4s"></div>
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      Professional <span class="gradient-text">Video Editing</span><br>
+      & <span class="gradient-text">Poster Design</span>
+    </h1>
+    <p>Transform raw footage into stunning videos. Eye-catching posters for events, promotions & brands. Fast delivery. Starting ₹249.</p>
+    <div class="hero-buttons">
+      <a href="request.html" class="btn btn-primary cta-track">
+        <span>Start Project</span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 13l4 4L19 7"/></svg>
+      </a>
+      <a href="#pricing" class="btn btn-secondary">View Pricing</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-number" data-target="250">0</span>
+        <span>+</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" data-target="150">0</span>
+        <span>+</span>
+        <span class="stat-label">Clients</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" data-target="3">0</span>
+        <span>+</span>
+        <span class="stat-label">Years</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <div class="section-header">
+      <h2>Our Core Services</h2>
+      <p>Premium video editing and design services trusted by 150+ clients</p>
+    </div>
+    <div class="services-grid">
+      <article class="service-card">
+        <div class="service-icon">🎬</div>
+        <h3>Video Editing</h3>
+        <p>Expert editing for YouTube, Instagram Reels, weddings, events. Color grading, effects, music sync. Fast turnaround.</p>
+        <span class="service-price">From ₹299</span>
+        <a href="edits.html" class="btn btn-primary small">Explore</a>
+      </article>
+      <article class="service-card">
+        <div class="service-icon">🪧</div>
+        <h3>Poster Design</h3>
+        <p>Custom posters for events, fitness, weddings, businesses. Print-ready high-res PNG/PDF. Multiple revisions.</p>
+        <span class="service-price">From ₹249</span>
+        <a href="poster.html" class="btn btn-primary small">Explore</a>
+      </article>
+      <article class="service-card">
+        <div class="service-icon">✨</div>
+        <h3>Full Services</h3>
+        <p>Invitations, scrapbooks, reels, brand kits. Complete creative solutions for all occasions.</p>
+        <span class="service-price">View All</span>
+        <a href="services.html" class="btn btn-primary small">Full List</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <h2>Simple 3-Step Process</h2>
+      <p>From idea to final delivery in days, not weeks</p>
+    </div>
+    <div class="steps-container">
+      <div class="step active">
+        <div class="step-number">
+          <span>01</span>
+        </div>
+        <h3>Submit Details</h3>
+        <p>Upload files + requirements via secure form. Instant confirmation. Review in 2hrs.</p>
+      </div>
+      <div class="step-connector">
+        <div class="progress-line"></div>
+      </div>
+      <div class="step">
+        <div class="step-number">
+          <span>02</span>
+        </div>
+        <h3>We Edit & Design</h3>
+        <p>Professional editing with your feedback. Unlimited revisions until perfect.</p>
+      </div>
+      <div class="step-connector">
+        <div class="progress-line"></div>
+      </div>
+      <div class="step">
+        <div class="step-number">
+          <span>03</span>
+        </div>
+        <h3>Fast Delivery</h3>
+        <p>Download high-res files. Share-ready. On-time guarantee or money back.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <h2>Trusted By Clients</h2>
+      <p>What our 150+ clients say about our work</p>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-avatar"></div>
+        <div class="testimonial-text">"Transformed our raw footage into viral reels. Fast & professional!"</div>
+        <div class="testimonial-author">- Event Organizer</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-avatar"></div>
+        <div class="testimonial-text">"Posters got 500+ shares. Perfect for our fitness launch!"</div>
+        <div class="testimonial-author">- Gym Owner</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-avatar"></div>
+        <div class="testimonial-text">"Wedding edits made our couple cry happy tears. 5⭐"</div>
+        <div class="testimonial-author">- Wedding Planner</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="quick-contact">
+  <div class="container">
+    <div class="section-header">
+      <h2>Get Free Quote</h2>
+      <p>Ready to start? Send details - response in 2 hours</p>
+    </div>
+    <form class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Service *</label>
+          <select required>
+            <option>Select service</option>
+            <option>Video Editing</option>
+            <option>Poster Design</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Deadline</label>
+          <input type="date">
+        </div>
+      </div>
+      <div class="form-group full">
+        <label>Project Details *</label>
+        <textarea rows="6" required placeholder="Raw files, style reference..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary submit-btn large">
+        Get Quote
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="section-header">
+      <h2>Frequently Asked</h2>
+      <p>Everything you need to know before ordering</p>
+    </div>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How fast do you deliver?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Basic edits: 1-2 days. Rush: 24hr.</p>
+        </div>
+      </div>
+      <!-- More FAQ items -->
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <h2>Ready to Transform?</h2>
+    <p>150+ clients trust us</p>
+    <div class="cta-buttons">
+      <a href="request.html" class="btn btn-primary large">Start Project</a>
+      <a href="https://wa.me/919015353021" class="btn btn-secondary large">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<script>
+// Preloader remove after load
+window.addEventListener('load', () => {
+  document.querySelector('.preloader').style.opacity = '0';
+  setTimeout(() => document.querySelector('.preloader').style.display = 'none', 500);
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^=\"#\"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>

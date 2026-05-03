@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster Designs | Thakur.crea8tions</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .poster-hero {
+            background: linear-gradient(135deg, #1e1b4b 0%, #0f0a2a 50%, #1e3a8a 100%);
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .poster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+        .poster-card {
+            background: rgba(15,23,42,0.95);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(99,102,241,0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        .poster-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        .poster-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            position: relative;
+            overflow: hidden;
+        }
+        .poster-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .poster-card:hover .poster-img {
+            transform: scale(1.05);
+        }
+        .poster-info {
+            padding: 1rem;
+        }
+        .poster-category {
+            display: inline-flex;
+            gap: 0.5rem;
+            padding: 0.2rem 0.5rem;
+            background: rgba(168,85,247,0.2);
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #a855f7;
+            margin-bottom: 0.5rem;
+        }
+        .poster-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.4rem;
+        }
+        .poster-desc {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.75rem;
+            line-height: 1.4;
+            margin-bottom: 0.75rem;
+        }
+        .poster-price {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #10b981;
+            background: rgba(16,185,129,0.2);
+            padding: 0.3rem 0.6rem;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        .poster-filters {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 2rem 0;
+            padding: 1rem;
+        }
+        .poster-filter-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+        }
+        .poster-filter-btn:hover, .poster-filter-btn.active {
+            background: linear-gradient(135deg, #ec4899, #f472b6);
+            border-color: #ec4899;
+            transform: translateY(-2px);
+        }
+        .explore-more-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #6366f1, #ec4899);
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            margin: 2rem auto;
+            width: fit-content;
+            transition: all 0.3s;
+        }
+        .explore-more-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(99,102,241,0.4);
+        }
+        @media (max-width: 768px) {
+            .poster-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 1.5rem 1rem; }
+            .poster-image { aspect-ratio: 1/1.2; }
+        }
+    </style>
+</head>
+<body>
+<!-- NO NAVBAR - AS REQUESTED -->
+
+    <!-- POSTER HERO -->
+    <section class="poster-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Poster</span> Designs
+                </h1>
+                <p>Print-ready posters delivered in 12hrs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTERS -->
+    <div class="poster-filters container">
+        <button class="poster-filter-btn active" data-filter="all">All</button>
+        <button class="poster-filter-btn" data-filter="event">Events</button>
+        <button class="poster-filter-btn" data-filter="business">Business</button>
+        <button class="poster-filter-btn" data-filter="fitness">Fitness</button>
+        <button class="poster-filter-btn" data-filter="wedding">Wedding</button>
+    </div>
+
+    <!-- POSTER GRID (SMALLER) -->
+    <section>
+        <div class="poster-grid">
+            <!-- Event -->
+            <div class="poster-card" data-categories="event">
+                <div class="poster-image">
+                    <img class="poster-img" src="images/event.png" alt="Event Poster">
+                </div>
+                <div class="poster-info">
+                    <div class="poster-category">Event</div>
+                    <h3 class="poster-title">Concert Flyer</h3>
+                    <p class="poster-desc">Bold typography + high contrast</p>
+                    <span class="poster-price">₹149</span>
+                </div>
+            </div>
+
+            <!-- Wedding -->
+            <div class="poster-card" data-categories="wedding">
+                <div class="poster-image">
+                    <img class="poster-img" src="images/wedding.png" alt="Wedding Poster">
+                </div>
+                <div class="poster-info">
+                    <div class="poster-category">Wedding</div>
+                    <h3 class="poster-title">Destination</h3>
+                    <p class="poster-desc">Elegant gold effect</p>
+                    <span class="poster-price">₹299</span>
+                </div>
+            </div>
+
+            <!-- Fitness -->
+            <div class="poster-card" data-categories="fitness">
+                <div class="poster-image">
+                    <img class="poster-img" src="images/fitness.png" alt="Fitness Poster">
+                </div>
+                <div class="poster-info">
+                    <div class="poster-category">Fitness</div>
+                    <h3 class="poster-title">Gym Launch</h3>
+                    <p class="poster-desc">Bold colors</p>
+                    <span class="poster-price">₹199</span>
+                </div>
+            </div>
+
+            <!-- Business -->
+            <div class="poster-card" data-categories="business">
+                <div class="poster-image">
+                    <img class="poster-img" src="images/corporate.png" alt="Corporate Poster">
+                </div>
+                <div class="poster-info">
+                    <div class="poster-category">Corporate</div>
+                    <h3 class="poster-title">Product Launch</h3>
+                    <p class="poster-desc">Professional layout</p>
+                    <span class="poster-price">₹249</span>
+                </div>
+            </div>
+
+            <!-- Booking -->
+            <div class="poster-card" data-categories="business">
+                <div class="poster-image">
+                    <img class="poster-img" src="images/booking.png" alt="Booking Poster">
+                </div>
+                <div class="poster-info">
+                    <div class="poster-category">Booking</div>
+                    <h3 class="poster-title">Salon Promo</h3>
+                    <p class="poster-desc">QR code ready</p>
+                    <span class="poster-price">₹179</span>
+                </div>
+            </div>
+
+            <!-- Festival -->
+            <div class="poster-card" data-categories="event">
+                <div class="poster-image">
+                    <img class="poster-img" src="images/festival.png" alt="Festival Poster">
+                </div>
+                <div class="poster-info">
+                    <div class="poster-category">Festival</div>
+                    <h3 class="poster-title">Cultural Fest</h3>
+                    <p class="poster-desc">Vibrant colors</p>
+                    <span class="poster-price">₹199</span>
+                </div>
+            </div>
+
+            <!-- Fashion -->
+            <div class="poster-card" data-categories="business">
+                <div class="poster-image">
+                    <img class="poster-img" src="images/fashion.png" alt="Fashion Poster">
+                </div>
+                <div class="poster-info">
+                    <div class="poster-category">Fashion</div>
+                    <h3 class="poster-title">Collection</h3>
+                    <p class="poster-desc">Minimal design</p>
+                    <span class="poster-price">₹249</span>
+                </div>
+            </div>
+
+            <!-- Travel -->
+            <div class="poster-card" data-categories="business">
+                <div class="poster-image">
+                    <img class="poster-img" src="images/travel.png" alt="Travel Poster">
+                </div>
+                <div class="poster-info">
+                    <div class="poster-category">Travel</div>
+                    <h3 class="poster-title">Summer</h3>
+                    <p class="poster-desc">Exotic destinations</p>
+                    <span class="poster-price">₹229</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPLORE MORE BUTTON -->
+<a href="https://www.instagram.com/thakur.crea8tions" target="_blank" rel="noopener" class="explore-more-btn">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.947.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.836c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c1.224-1.114 2.021-2.405 2.021-3.917 0-3.584-2.916-6.5-6.5-6.5s-6.5 2.916-6.5 6.5c0 1.512.797 2.803 2.021 3.917-1.125 1.01-1.906 2.42-1.906 4.074 0 2.761 2.239 5 5 5s5-2.239 5-5c0-1.654-.781-3.064-1.906-4.074z"/>
+        </svg>
+        Explore More on Instagram
+    </a>
+
+    <!-- CTA - HOME + ORDER NOW -->
+    <section class="cta-section container" style="padding: 4rem 1rem; margin-top: 4rem;">
+        <h2 class="text-3xl font-bold text-center mb-4 gradient-text">Need Custom Poster?</h2>
+        <p class="text-lg text-center mb-6 text-slate-700">
+            Print-ready designs in 12hrs. Unlimited revisions.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="index.html" class="btn btn-primary" style="background: rgba(255,255,255,0.9); color: #6366f1;">🏠 Home</a>
+            <a href="request.html" class="btn btn-primary">Order Poster</a>
+        </div>
+    </section>
+
+    <script>
+        // Poster filter
+        const posterFilterBtns = document.querySelectorAll('.poster-filter-btn');
+        const posterCards = document.querySelectorAll('.poster-card');
+
+        posterFilterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                posterFilterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                posterCards.forEach(card => {
+                    card.style.display = 'none';
+                    if (filter === 'all' || card.dataset.categories.includes(filter)) {
+                        card.style.display = 'block';
+                    }
+                });
+            });
+        });
+
+        // Mobile nav
+        document.getElementById('navToggle')?.addEventListener('click', () => {
+            document.querySelector('.nav-links')?.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "Thakur.crea8tions - Video Editing & Design",
+  "short_name": "ThakurCrea8",
+  "description": "Professional Video Editing & Poster Design Services",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "images/logo.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "images/logo.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
+

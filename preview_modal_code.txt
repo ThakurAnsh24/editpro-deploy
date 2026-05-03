@@ -1,0 +1,27 @@
+<!-- Preview Modal - Add this to admin_orders.php before the <script> tag -->
+
+<!-- Preview Modal -->
+<div id="previewModal" class="modal-overlay">
+    <div class="modal-content" style="max-width:550px;">
+        <div class="modal-header">
+            <h3>Send Preview to Client</h3>
+            <button class="modal-close" onclick="closePreview()">x</button>
+        </div>
+        <div class=" <p>Order #<span id="previewOrderId"></span> - <strong id="modal-body">
+           previewClientName"></strong></p>
+            <form id="previewForm" method="POST" action="upload_preview.php" enctype="multipart/form-data" target="_blank">
+                <input type="hidden" name="order_id" id="previewOrderIdInput">
+                <input type="hidden" name="client_phone" id="previewClientPhone">
+                <div>
+                    <label>Upload Preview (Video/Image)</label>
+                    <input type="file" name="preview_file" accept="video/*,image/*" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="modal-btn cancel" onclick="closePreview()">Cancel</button>
+                    <button type="submit" class="modal-btn save">Send Preview</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

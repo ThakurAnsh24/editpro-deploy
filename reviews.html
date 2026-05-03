@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reviews | Thakur.crea8tions</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/header-footer.css">
+<style>
+.review-stars { color: #fbbf24; font-size: 1.5rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+.review-author { font-weight: 600; color: var(--primary); margin-top: 1rem; font-size: 0.95rem; }
+.stars { color: #fbbf24 !important; }
+.star-rating { display: flex; gap: 0.5rem; font-size: 2rem; justify-content: center; margin: 1.5rem 0; }
+.star { color: #e5e7eb; cursor: pointer; transition: all 0.2s; font-size: 1.8rem; }
+.star:hover, .star.active { color: #fbbf24; transform: scale(1.1); }
+.form-input, .form-textarea { width: 100%; padding: 1rem 1.25rem; border: 2px solid #e5e7eb; border-radius: var(--border-radius); font-size: 1rem; transition: all 0.3s; margin-bottom: 1rem; background: white; }
+.form-input:focus, .form-textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+.form-textarea { min-height: 120px; resize: vertical; }
+.review-form { background: white; border-radius: var(--border-radius); padding: 3rem; max-width: 600px; margin: 4rem auto; box-shadow: var(--shadow); }
+.submit-review { width: 100%; }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <img src="images/logo.svg" alt="Logo">
+            <span>Thakur.crea8tions</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="edits.html">Edits</a></li>
+            <li><a href="poster.html">Posters</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="reviews.html" class="active">Reviews</a></li>
+            <li><a href="order.html" class="nav-cta">Order Now</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+
+<section class="services py-5">
+  <div class="container">
+    <div class="section-header">
+      <h2>Client Reviews</h2>
+      <p>What our clients say about our work</p>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="review-stars">★★★★★</div>
+        <p>Very professional work and great creativity. The video exceeded my expectations!</p>
+        <span class="review-author">— Rohit Kumar</span>
+      </div>
+      
+      <div class="service-card">
+        <div class="review-stars">★★★★☆</div>
+        <p>Fast delivery and clean design. Very happy with the final poster.</p>
+        <span class="review-author">— Neha Patel</span>
+      </div>
+      
+      <div class="service-card">
+        <div class="review-stars">★★★★★</div>
+        <p>Best editing service I've used. Will definitely order again!</p>
+        <span class="review-author">— Arjun Mehta</span>
+      </div>
+      
+      <div class="service-card">
+        <div class="review-stars">★★★★★</div>
+        <p>Amazing attention to detail and great communication. Highly recommended!</p>
+        <span class="review-author">— Priya Singh</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="review-form">
+  <h3 class="text-center mb-6 text-2xl font-bold">Write Your Review</h3>
+  <form id="reviewForm">
+    <div class="form-group">
+      <label for="revName">Your Name *</label>
+      <input type="text" id="revName" class="form-input" placeholder="Enter your name" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="revText">Your Review *</label>
+      <textarea id="revText" class="form-textarea" placeholder="Share your experience with us..." required></textarea>
+    </div>
+    
+    <div class="star-rating text-center" id="starRating">
+      <span class="star" data-value="1">★</span>
+      <span class="star" data-value="2">★</span>
+      <span class="star" data-value="3">★</span>
+      <span class="star" data-value="4">★</span>
+      <span class="star" data-value="5">★</span>
+    </div>
+    
+    <button type="submit" class="btn btn-primary submit-review">Submit Review</button>
+  </form>
+</div>
+
+</div>
+
+<div class="text-center mt-8">
+  <a href="index.html" class="btn btn-secondary">← Back to Home</a>
+</div>
+
+<script>
+/* Mobile Navigation */
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+}
+
+/* Star Rating */
+const stars = document.querySelectorAll('.star');
+let selectedRating = 5;
+
+stars.forEach(star => {
+    star.addEventListener('click', () => {
+        selectedRating = star.dataset.value;
+        stars.forEach(s => {
+            s.classList.toggle('active', s.dataset.value <= selectedRating);
+        });
+    });
+});
+
+// Initialize with 5 stars
+stars.forEach(s => {
+    s.classList.toggle('active', s.dataset.value <= 5);
+});
+
+/* Review Form */
+document.getElementById('reviewForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('revName').value;
+    const review = document.getElementById('revText').value;
+    
+    // Show success message (in production, this would send to backend)
+    alert('Thank you for your review, ' + name + '! You rated us ' + selectedRating + ' stars.');
+    this.reset();
+    stars.forEach(s => {
+        s.classList.toggle('active', s.dataset.value <= 5);
+    });
+    selectedRating = 5;
+});
+</script>
+
+</body>
+</html>
+

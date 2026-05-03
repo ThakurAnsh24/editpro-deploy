@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Order | EditPro</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-light: #a5b4fc;
+    --secondary: #ec4899;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --dark: #1e293b;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-500: #64748b;
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.track-page-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.back-link:hover {
+    opacity: 1;
+}
+
+.form-container {
+    background: white;
+    border-radius: 24px;
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+    padding: 40px;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.form-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+.form-header p {
+    color: var(--gray-500);
+}
+
+.search-box {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 16px 20px;
+    border: 2px solid var(--gray-200);
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+.search-box button {
+    padding: 16px 32px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.search-box button:hover {
+    background: var(--primary-dark);
+}
+
+/* Order Result */
+.order-result {
+    display: none;
+}
+
+.order-result.active {
+    display: block;
+    animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.order-id {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.order-date {
+    color: var(--gray-500);
+    font-size: 14px;
+}
+
+/* Status Timeline */
+.status-timeline {
+    margin: 24px 0;
+}
+
+.timeline-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 16px;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 32px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gray-200);
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 24px;
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -28px;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--gray-200);
+    border: 3px solid white;
+}
+
+.timeline-item.completed .timeline-dot {
+    background: var(--success);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+}
+
+.timeline-item.current .timeline-dot {
+    background: var(--primary);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2); }
+    50% { box-shadow: 0 0 0 8px rgba(99, 102, 241, 0.1); }
+}
+
+.timeline-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 4px;
+}
+
+.timeline-content p {
+    font-size: 13px;
+    color: var(--gray-500);
+}
+
+/* Order Details */
+.order-details {
+    background: var(--gray-50);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 24px;
+}
+
+.order-details h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 16px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    color: var(--gray-500);
+    font-size: 14px;
+}
+
+.detail-value {
+    color: var(--dark);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Contact CTA */
+.contact-cta {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--gray-200);
+}
+
+.contact-cta p {
+    color: var(--gray-500);
+    margin-bottom: 16px;
+}
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.whatsapp-btn:hover {
+    background: #128C7E;
+    transform: translateY(-2px);
+}
+
+/* Error Message */
+.error-message {
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px solid var(--danger);
+    color: #b91c1c;
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+    display: none;
+}
+
+.error-message.active {
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .form-container {
+        padding: 24px;
+    }
+    
+    .search-box {
+        flex-direction: column;
+    }
+    
+    .search-box button {
+        width: 100%;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="track-page-wrapper">
+    <a href="index.html" class="back-link">← Back to Home</a>
+    
+    <div class="form-container">
+        <div class="form-header">
+            <h1>🔍 Track Your Order</h1>
+            <p>Enter your order ID to check the status</p>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" id="orderIdInput" placeholder="Enter Order ID (e.g., 1)" />
+            <button onclick="trackOrder()">Track Order</button>
+        </div>
+        
+        <div class="error-message" id="errorMessage"></div>
+        
+        <div class="order-result" id="orderResult">
+            <div class="order-header">
+                <span class="order-id" id="displayOrderId">#1</span>
+                <span class="order-date" id="orderDate">Jan 1, 2025</span>
+            </div>
+            
+            <div class="status-timeline">
+                <div class="timeline-title">Order Progress</div>
+                <div class="timeline" id="statusTimeline"></div>
+            </div>
+            
+            <div class="order-details">
+                <h3>📋 Order Details</h3>
+                <div class="detail-row">
+                    <span class="detail-label">Service</span>
+                    <span class="detail-value" id="serviceType">Video Editing</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Sub Service</span>
+                    <span class="detail-value" id="subService">Reel Edit</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Price</span>
+                    <span class="detail-value" id="orderPrice">₹499</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Payment</span>
+                    <span class="detail-value" id="paymentStatus">Paid</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Delivery Date</span>
+                    <span class="detail-value" id="deliveryDate">Jan 5, 2025</span>
+                </div>
+                <div class="download-section" id="downloadSection" style="display: none; margin-top: 16px; padding: 16px; background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-radius: 12px; border: 2px solid #10b981; text-align: center;">
+                    <h4 style="color: #065f46; margin-bottom: 8px;">🎉 Your Order is Ready!</h4>
+                    <p style="color: #047857; font-size: 14px; margin-bottom: 12px;">Click below to download your completed file</p>
+                    <a href="#" id="downloadLink" target="_blank" class="download-btn" style="display: inline-block; padding: 12px 24px; background: #10b981; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                        ⬇️ Download File
+                    </a>
+                </div>
+            </div>
+            
+            <div class="contact-cta">
+                <p>Have questions about your order?</p>
+                <a href="https://wa.me/919015353021?text=Hi,+I+have+a+question+about+my+order" target="_blank" class="whatsapp-btn">
+                    💬 Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+async function trackOrder() {
+    // Check for order ID in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderIdFromUrl = urlParams.get('id');
+    
+    if (orderIdFromUrl) {
+        document.getElementById('orderIdInput').value = orderIdFromUrl;
+        trackOrderById(orderIdFromUrl);
+        return;
+    }
+    
+    const orderId = document.getElementById('orderIdInput').value.trim();
+    if (!orderId) {
+        showError('Please enter an order ID');
+        return;
+    }
+    trackOrderById(orderId);
+}
+
+async function trackOrderById(orderId) {
+    const errorDiv = document.getElementById('errorMessage');
+    const resultDiv = document.getElementById('orderResult');
+    
+    if (!orderId) {
+        showError('Please enter an order ID');
+        return;
+    }
+    
+    try {
+        const response = await fetch(`backend/get_order.php?id=${orderId}`);
+        const data = await response.json();
+        
+        if (data.success) {
+            displayOrder(data.order);
+        } else {
+            showError('Order not found. Please check your order ID.');
+        }
+    } catch (e) {
+        showError('Error tracking order. Please try again.');
+    }
+}
+
+function showError(message) {
+    const errorDiv = document.getElementById('errorMessage');
+    const resultDiv = document.getElementById('orderResult');
+    
+    errorDiv.textContent = message;
+    errorDiv.classList.add('active');
+    resultDiv.classList.remove('active');
+}
+
+function displayOrder(order) {
+    const errorDiv = document.getElementById('errorMessage');
+    const resultDiv = document.getElementById('orderResult');
+    
+    errorDiv.classList.remove('active');
+    resultDiv.classList.add('active');
+    
+    // Order header
+    document.getElementById('displayOrderId').textContent = '#' + order.id;
+    document.getElementById('orderDate').textContent = new Date(order.created_at).toLocaleDateString('en-US', {
+        year: 'numeric', month: 'short', day: 'numeric'
+    });
+    
+    // Order details
+    document.getElementById('serviceType').textContent = order.service_type === 'edit' ? 'Video Editing' : 'Poster Design';
+    document.getElementById('subService').textContent = order.sub_service.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
+    document.getElementById('orderPrice').textContent = '₹' + order.price;
+    document.getElementById('paymentStatus').textContent = order.payment_status || 'Pending';
+    document.getElementById('deliveryDate').textContent = new Date(order.delivery_date).toLocaleDateString('en-US', {
+        year: 'numeric', month: 'short', day: 'numeric'
+    });
+    
+    // Status timeline
+    const timeline = document.getElementById('statusTimeline');
+    const statuses = [
+        { key: 'Pending', label: 'Order Received', desc: 'Your order has been submitted' },
+        { key: 'Accepted', label: 'Order Accepted', desc: 'We\'ve accepted your order' },
+        { key: 'In Progress', label: 'In Progress', desc: 'Our team is working on it' },
+        { key: 'Completed', label: 'Completed', desc: 'Your order is ready!' }
+    ];
+    
+    let currentIndex = statuses.findIndex(s => s.key === order.status);
+    if (currentIndex === -1) currentIndex = 0;
+    
+    let timelineHTML = '';
+    statuses.forEach((status, index) => {
+        let itemClass = '';
+        if (index < currentIndex) {
+            itemClass = 'completed';
+        } else if (index === currentIndex) {
+            itemClass = 'current';
+        }
+        
+        timelineHTML += `
+            <div class="timeline-item ${itemClass}">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>${status.label}</h4>
+                    <p>${status.desc}</p>
+                </div>
+            </div>
+        `;
+    });
+    
+    timeline.innerHTML = timelineHTML;
+    
+    // Show download section if order is completed and has a completed file
+    const downloadSection = document.getElementById('downloadSection');
+    const downloadLink = document.getElementById('downloadLink');
+    
+    if (order.status === 'Completed' && order.completed_file) {
+        downloadSection.style.display = 'block';
+        downloadLink.href = order.completed_file;
+    } else {
+        downloadSection.style.display = 'none';
+    }
+}
+
+// Allow Enter key to search
+document.getElementById('orderIdInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        trackOrder();
+    }
+});
+</script>
+
+</body>
+</html>
+

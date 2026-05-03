@@ -1,0 +1,10 @@
+# EditPro Backend - PHP built-in server compatible
+# Note: This file is mainly for Apache. PHP's built-in server ignores it.
+
+# Security headers (Apache only)
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+

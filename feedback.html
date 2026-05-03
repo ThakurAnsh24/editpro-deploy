@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback | Thakur.crea8tions</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ===== PAGE SPECIFIC STYLES ===== */
+body {
+    background:#f4f6f9;
+}
+
+header.page-header {
+    background:#0f0f0f;
+    padding:20px;
+    text-align:center;
+}
+
+header.page-header h1{
+    color:#fff;
+    font-size:26px;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+header.page-header p{
+    color:#999;
+    font-size:14px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.feedback-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    margin-bottom:50px;
+}
+
+.feedback-card{
+    background:#fff;
+    border-radius:16px;
+    padding:24px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    transition:all 0.3s ease;
+}
+
+.feedback-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 40px rgba(108,99,255,0.12);
+}
+
+.feedback-card p{
+    font-size:15px;
+    line-height:1.6;
+    margin-bottom:15px;
+    color:#444;
+}
+
+.feedback-card h4{
+    font-size:15px;
+    font-weight:600;
+    color:#111;
+}
+
+.write-feedback{
+    background:#fff;
+    border-radius:16px;
+    padding:30px;
+    max-width:600px;
+    margin:auto;
+    box-shadow:0 15px 40px rgba(0,0,0,0.1);
+}
+
+.write-feedback h2{
+    font-size:20px;
+    font-weight:600;
+    margin-bottom:20px;
+    text-align:center;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:500;
+    font-size:14px;
+    color:#333;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    padding:14px 16px;
+    border:2px solid #eee;
+    border-radius:12px;
+    font-size:14px;
+    transition:all 0.3s;
+    font-family:inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    outline:none;
+    border-color:#6c63ff;
+    box-shadow:0 0 0 4px rgba(108,99,255,0.1);
+}
+
+.form-group textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.write-feedback button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg, #6c63ff 0%, #5a52d5 100%);
+    color:#fff;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all 0.3s;
+}
+
+.write-feedback button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 30px rgba(108,99,255,0.3);
+}
+
+.back {
+    display:block;
+    text-align:center;
+    margin:40px 0 20px;
+    text-decoration:none;
+    color:#6c63ff;
+    font-weight:600;
+    font-size:15px;
+}
+
+.back:hover{
+    text-decoration:underline;
+}
+
+@media (max-width:600px){
+    header.page-header h1{
+        font-size:22px;
+    }
+    
+    .write-feedback{
+        padding:20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <img src="images/logo.svg" alt="Logo">
+            <span>Thakur.crea8tions</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="edits.html">Edits</a></li>
+            <li><a href="poster.html">Posters</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="feedback.html" class="active">Feedback</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="order.html" class="nav-cta">Order Now</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+
+<header class="page-header">
+    <h1>Client Feedback</h1>
+    <p>See what our clients say about us</p>
+</header>
+
+<div class="container">
+
+    <!-- FEEDBACK DISPLAY -->
+    <div class="feedback-grid">
+
+        <div class="feedback-card">
+            <p>Excellent editing quality and very professional work. Delivered exactly what I needed for my business promotion.</p>
+            <h4>— Rahul Sharma</h4>
+        </div>
+
+        <div class="feedback-card">
+            <p>Creative posters and quick delivery. My event promotion worked really well thanks to the amazing designs!</p>
+            <h4>— Pooja Verma</h4>
+        </div>
+
+        <div class="feedback-card">
+            <p>Clean edits and great understanding of requirements. Highly recommended for video editing services.</p>
+            <h4>— Amit Singh</h4>
+        </div>
+
+        <div class="feedback-card">
+            <p>Amazing attention to detail and great communication throughout the project. Will definitely order again!</p>
+            <h4>— Sneha Gupta</h4>
+        </div>
+
+    </div>
+
+    <!-- WRITE FEEDBACK -->
+    <div class="write-feedback">
+        <h2>Share Your Feedback</h2>
+        <form id="feedbackForm">
+            <div class="form-group">
+                <label for="fbName">Your Name</label>
+                <input type="text" id="fbName" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="fbMessage">Your Feedback</label>
+                <textarea id="fbMessage" placeholder="Tell us about your experience..." required></textarea>
+            </div>
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+
+</div>
+
+<a href="index.html" class="back">← Back to Home</a>
+
+<script>
+/* Mobile Navigation */
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+}
+
+/* Feedback Form */
+document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('fbName').value;
+    const message = document.getElementById('fbMessage').value;
+    
+    // Show success message (in production, this would send to backend)
+    alert('Thank you for your feedback, ' + name + '! We appreciate your response.');
+    this.reset();
+});
+</script>
+
+</body>
+</html>
+

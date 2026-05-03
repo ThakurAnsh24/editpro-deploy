@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="All Services - Thakur.crea8tions">
+<title>All Services | Thakur.crea8tions</title>
+<link rel="icon" type="image/svg+xml" href="images/logo.svg">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ===== PAGE SPECIFIC STYLES ===== */
+.services-hero {
+    background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+    padding: 80px 20px;
+    text-align: center;
+    color: white;
+}
+
+.services-hero h1 {
+    font-size: 48px;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+.services-hero p {
+    font-size: 20px;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.services-section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.services-section h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: var(--dark, #1e293b);
+}
+
+.all-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(99, 102, 241, 0.15);
+}
+
+.service-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+}
+
+.service-card h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: var(--dark, #1e293b);
+    font-weight: 600;
+}
+
+.service-card p {
+    color: #64748b;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.service-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: #6366f1;
+}
+
+.service-price span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #94a3b8;
+}
+
+.service-arrow {
+    float: right;
+    font-size: 24px;
+    color: #6366f1;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .service-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Different gradient backgrounds for each service */
+.service-card:nth-child(1) .service-icon-wrapper { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); }
+.service-card:nth-child(2) .service-icon-wrapper { background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%); }
+.service-card:nth-child(3) .service-icon-wrapper { background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); }
+.service-card:nth-child(4) .service-icon-wrapper { background: linear-gradient(135deg, #10b981 0%, #34d399 100%); }
+.service-card:nth-child(5) .service-icon-wrapper { background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%); }
+.service-card:nth-child(6) .service-icon-wrapper { background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%); }
+
+.cta-section {
+    background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+    padding: 60px 20px;
+    text-align: center;
+    color: white;
+    margin-top: 40px;
+}
+
+.cta-section h2 {
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.cta-section p {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 24px;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 16px 40px;
+    background: white;
+    color: #6366f1;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.cta-btn:hover {
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .services-hero h1 {
+        font-size: 32px;
+    }
+    
+    .services-hero p {
+        font-size: 16px;
+    }
+    
+    .all-services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- CUSTOM CURSOR -->
+<div class="custom-cursor" id="customCursor"></div>
+
+<!-- LOADING SCREEN -->
+<div class="loader" id="loader">
+    <div class="loader-content">
+        <div class="loader-spinner"></div>
+        <p>Loading...</p>
+    </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- NAVIGATION - HIDDEN ON SERVICES PAGE -->
+<nav class="main-nav no-services" id="mainNav" style="display: none;">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <img src="images/logo.svg" alt="Logo">
+            <span>Thakur.crea8tions</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="track.html">Track Order</a></li>
+            <li><a href="order.html" class="nav-cta">Order Now</a></li>
+            <li><a href="backend/admin_login.php" class="admin-link">Admin</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="services-hero">
+    <h1>Our Services</h1>
+    <p>Professional creative services tailored to your needs. Explore all the ways we can help bring your vision to life.</p>
+</section>
+
+<!-- SERVICES GRID -->
+<section class="services-section">
+    <h2>What We Offer</h2>
+    
+    <div class="all-services-grid">
+        <!-- Video Editing -->
+        <a href="edits.html" class="service-card">
+            <div class="service-icon-wrapper">🎬</div>
+            <h3>Video Editing</h3>
+            <p>Professional editing for YouTube, Instagram, weddings, events & corporate content. Make your videos stand out with expert editing.</p>
+            <span class="service-price">From ₹299 <span>starting</span></span>
+            <span class="service-arrow">→</span>
+        </a>
+        
+        <!-- Poster Design -->
+        <a href="poster.html" class="service-card">
+            <div class="service-icon-wrapper">🎨</div>
+            <h3>Poster Design</h3>
+            <p>Eye-catching posters for events, fitness, branding & promotional campaigns. Get designs that grab attention.</p>
+            <span class="service-price">From ₹249 <span>starting</span></span>
+            <span class="service-arrow">→</span>
+        </a>
+        
+        <!-- Invitation Cards -->
+        <a href="invitation.html" class="service-card">
+            <div class="service-icon-wrapper">💌</div>
+            <h3>Invitation Cards</h3>
+            <p>Beautiful digital & printed invitation cards for weddings, birthdays, baby showers & all special occasions.</p>
+            <span class="service-price">From ₹199 <span>starting</span></span>
+            <span class="service-arrow">→</span>
+        </a>
+        
+        <!-- Scrapbooks -->
+        <a href="scrapbook.html" class="service-card">
+            <div class="service-icon-wrapper">📒</div>
+            <h3>Scrapbooks</h3>
+            <p>Beautiful personalized digital scrapbooks for your precious memories - weddings, birthdays, travel & more.</p>
+            <span class="service-price">From ₹999 <span>starting</span></span>
+            <span class="service-arrow">→</span>
+        </a>
+    </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+    <h2>Ready to Get Started?</h2>
+    <p>Choose a service and place your order today!</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="index.html" class="cta-btn" style="background: rgba(255,255,255,0.9); color: #6366f1;">🏠 Home</a>
+        <a href="request.html" class="cta-btn">Order Now</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <p class="copyright">© 2025 Thakur.crea8tions • All Rights Reserved</p>
+    </div>
+</footer>
+
+<script>
+/* ============ SCROLL PROGRESS ============ */
+function updateScrollProgress() {
+    const scrollProgress = document.getElementById('scrollProgress');
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    scrollProgress.style.width = scrollPercent + '%';
+}
+
+window.addEventListener('scroll', updateScrollProgress);
+updateScrollProgress();
+
+/* ============ CUSTOM CURSOR ============ */
+const cursor = document.getElementById('customCursor');
+let isHovering = false;
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+const interactiveElements = document.querySelectorAll('a, button, .service-card');
+interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => isHovering = true);
+    el.addEventListener('mouseleave', () => isHovering = false);
+});
+
+document.addEventListener('mousemove', () => {
+    cursor.classList.toggle('active', isHovering);
+});
+
+/* ============ LOADING SCREEN ============ */
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+    }, 600);
+});
+
+/* ============ STICKY NAV ============ */
+window.addEventListener('scroll', () => {
+    const nav = document.getElementById('mainNav');
+    if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+});
+
+/* ============ MOBILE NAV ============ */
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+}
+</script>
+
+</body>
+</html>
+
