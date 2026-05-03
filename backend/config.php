@@ -17,12 +17,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-// Database configuration - use TCP connection (127.0.0.1)
-$db_host = "127.0.0.1";
-$db_user = "root";
-$db_pass = "";
-$db_name = "editpro";
-$db_port = 3306;
+// Database configuration - Railway env vars first, then local defaults
+if (isset($_ENV['MYSQLHOST'])) {
+    $db_host = $_ENV['MYSQLHOST'];
+    $db_user = $_ENV['MYSQLUSER'];
+    $db_pass = $_ENV['MYSQLPASSWORD'];
+    $db_name = $_ENV['MYSQLDATABASE'];
+    $db_port = isset($_ENV['MYSQLPORT']) ? $_ENV['MYSQLPORT'] : 3306;
+} else {
+    // Local defaults
+    $db_host = "127.0.0.1";
+    $db_user = "root";
+    $db_pass = "";
+    $db_name = "editpro";
+    $db_port = 3306;
+}
 
 // Try TCP connection first (for Homebrew MySQL), then socket paths
 $conn = null;
