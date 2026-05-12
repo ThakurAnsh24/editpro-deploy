@@ -385,10 +385,10 @@ document.getElementById('deliveryDate').min = new Date(Date.now() + 24*60*60*100
                 }
                 
                 // Send to backend
-                const response = await fetch('backend/save_order.php', {
-                    method: 'POST',
-                    body: formData
-                });
+        const response = await fetch('backend/save_order_fixed.php', {
+            method: 'POST',
+            body: formData
+        });
                 
                 const result = await response.json();
                 

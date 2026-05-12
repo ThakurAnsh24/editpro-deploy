@@ -15,7 +15,7 @@ $stats_sql = "SELECT
     COUNT(*) as total, 
     SUM(price) as revenue, 
     SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) as pending,
-    AVG(DATEDIFF(delivery_date, created_at)) as avg_days
+    COALESCE(AVG(DATEDIFF(delivery_date, created_at)), 0) as avg_days
     FROM orders";
 $stats = ['total' => 0, 'revenue' => 0, 'pending' => 0, 'avg_days' => 0];
 if ($conn && !$conn->connect_error) {
@@ -59,6 +59,7 @@ $orders_result = $conn ? mysqli_query($conn, $orders_sql) : false;
             <p>Advanced analytics & order management</p>
             <div style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap;">
                 <a href="team_members.php" class="btn" style="background:#10b981;padding:0.75rem 1.5rem;border-radius:12px;color:white;text-decoration:none;font-weight:600;">👥 Manage Team</a>
+
                 <a href="review_applications.php" class="btn" style="background:#f59e0b;padding:0.75rem 1.5rem;border-radius:12px;color:white;text-decoration:none;font-weight:600;">📋 Review Applications</a>
                 <a href="view_contacts.php" class="btn" style="background:#3b82f6;padding:0.75rem 1.5rem;border-radius:12px;color:white;text-decoration:none;font-weight:600;">📧 View Contacts</a>
                 <a href="export_pro_report.php?type=all" class="btn" style="background:#6366f1;padding:0.75rem 1.5rem;border-radius:12px;color:white;text-decoration:none;font-weight:600;">📥 Export Report</a>
@@ -80,7 +81,7 @@ $orders_result = $conn ? mysqli_query($conn, $orders_sql) : false;
             </div>
 <div class="stat-card">
                 <div>📈 Avg Delivery</div>
-                <div class="stat-number"><?php echo round($stats['avg_days'], 1); ?> days</div>
+                <div class="stat-number"><?php echo round((float)$stats['avg_days'], 1); ?> days</div>
             </div>
             <div class="stat-card">
                 <div>👥 Active Team</div>

@@ -58,7 +58,7 @@ if ($conn && !$conn->connect_error) {
         .stat-card { background: white; padding: 1.5rem; border-radius: 1rem; text-align: center; box-shadow: var(--shadow); }
         .stat-number { font-size: 2rem; font-weight: 700; }
         .urgent-section { background: rgba(239,68,68,0.05); border: 2px solid var(--danger); border-radius: 1rem; margin: 2rem 0; }
-        .urgent-header { display: flex; Asc justify-content: Asc space-between; align-items: center; Asc padding: 1rem 1.5rem; background: Asc var(--danger); color: Asc white; border-radius: Asc 1rem 1rem 0 0; }
+.urgent-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; background: var(--danger); color: white; border-radius: 1rem 1rem 0 0; }
         .order-card { background: white; border-radius: 1rem; margin-bottom: 1rem; box-shadow: var(--shadow); transition: all 0.3s; cursor: pointer; }
         .order-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0, Asc 0, Asc Asc 0,0.15); }
         .order-card.urgent { border-left: 5px solid Asc var(--danger); }

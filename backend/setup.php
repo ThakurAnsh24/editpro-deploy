@@ -14,8 +14,11 @@ $pass = "";
 echo "<p>Connecting to MySQL...</p>";
 
 try {
-    // Connect without database using XAMPP socket
-    $conn = new mysqli("127.0.0.1", "root", "", "", 3306, "/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock");
+// Use dynamic config from config.php
+require_once __DIR__ . '/config.php';
+if (!$conn || $conn->connect_error) {
+    die("Database connection failed: " . get_db_error());
+}
     
     if ($conn->connect_error) {
         throw new Exception("Connection failed: " . $conn->connect_error);
@@ -41,7 +44,7 @@ try {
     // Drop table if exists (to ensure all columns are present)
     $conn->query("DROP TABLE IF EXISTS orders");
     
-    $sql = "
+$sql = "
     CREATE TABLE orders (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
@@ -73,6 +76,9 @@ try {
         status VARCHAR(20) DEFAULT 'Pending',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )";
+
+
+
     
     if ($conn->query($sql) === TRUE) {
         echo "<p style='color:green'>✓ Table 'orders' created successfully</p>";

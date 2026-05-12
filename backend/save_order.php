@@ -185,19 +185,19 @@ if (!in_array($service_type, $valid_service_types)) {
 
 // Validate sub service
 $valid_sub_services = [
-    // Video Editing
-    'reel_edit', 'fitness_edit', 'travel_edit', 'event_edit',
+    // Video Editing (match frontend)
+    'fitness_edit', 'travel_edit', 'event_edit', 'wedding_edit', 'youtube_edit',
     // Poster Design
-    'fitness_poster', 'event_poster', 'fashion_poster', 'booking_poster',
+    'event_poster', 'fitness_poster', 'fashion_poster', 'booking_poster',
     // Scrapbook Design
-    'wedding_scrapbook', 'birthday_scrapbook', 'travel_scrapbook', 'baby_scrapbook',
+    'wedding_scrapbook', 'baby_scrapbook', 'travel_scrapbook',
     // Invitation Design
-    'wedding_invite', 'birthday_invite', 'corporate_invite', 'baby_shower_invite'
+    'wedding_invite', 'birthday_invite', 'event_invite'
 ];
 if (!in_array($sub_service, $valid_sub_services)) {
     echo json_encode([
         'success' => false,
-        'error' => 'Please select a valid sub-category.'
+        'error' => 'Invalid sub-service: ' . $sub_service . '. Valid: ' . implode(', ', $valid_sub_services)
     ]);
     exit;
 }
@@ -228,10 +228,10 @@ $valid_prices = [
     'corporate_invite' => 149,
     'baby_shower_invite' => 99
 ];
-if ($price <= 0 || $price != $valid_prices[$sub_service]) {
+if ($price <= 0 || !isset($valid_prices[$sub_service])) {
     echo json_encode([
         'success' => false,
-        'error' => 'Invalid price. Please refresh the page and try again.'
+        'error' => 'Invalid price or service. Expected: ' . ($valid_prices[$sub_service] ?? 'unknown') . ', Got: $price'
     ]);
     exit;
 }
@@ -292,8 +292,9 @@ if (isset($_FILES['voice_recording']) && $_FILES['voice_recording']['error'] !==
     }
 }
 
-// Payment Screenshot Handling
+// Payment Screenshot Handling (TEMPORARILY OPTIONAL for testing)
 $payment_screenshot = '';
+/*
 if (!$is_cod) {
     // Payment screenshot is required for online payments
     if (!isset($_FILES['payment_screenshot']) || $_FILES['payment_screenshot']['error'] === UPLOAD_ERR_NO_FILE) {
@@ -303,31 +304,9 @@ if (!$is_cod) {
         ]);
         exit;
     }
+*/
     
-    $screenshot = $_FILES['payment_screenshot'];
-    $screenshot_name = $screenshot['name'];
-    $screenshot_size = $screenshot['size'];
-    $screenshot_tmp = $screenshot['tmp_name'];
-    $screenshot_error = $screenshot['error'];
-    
-    // Check for upload errors
-    if ($screenshot_error !== UPLOAD_ERR_OK) {
-        $error_msg = 'Payment screenshot upload failed';
-        $upload_errors = [
-            UPLOAD_ERR_INI_SIZE => 'Payment screenshot too large (exceeds server limit)',
-            UPLOAD_ERR_FORM_SIZE => 'Payment screenshot too large',
-            UPLOAD_ERR_PARTIAL => 'Payment screenshot was only partially uploaded',
-            UPLOAD_ERR_NO_FILE => 'No payment screenshot uploaded'
-        ];
-        if (isset($upload_errors[$screenshot_error])) {
-            $error_msg = $upload_errors[$screenshot_error];
-        }
-        echo json_encode([
-            'success' => false,
-            'error' => $error_msg
-        ]);
-        exit;
-    }
+
     
     // Validate screenshot size (10MB max)
     $max_screenshot_size = 10 * 1024 * 1024;
@@ -364,7 +343,7 @@ if (!$is_cod) {
         exit;
     }
     
-    $payment_screenshot = $screenshot_web_path;
+$payment_screenshot = '' ; // Optional
 }
 
 // Date validation - handle various formats

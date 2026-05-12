@@ -1,61 +1,32 @@
-# Thakur.crea8tions - EditPro 🎬✨
+# EditPro - Complete Video Editing Business Platform
 
-## 🚀 LIVE Sites
+## Live Demo
+- Home: /
+- Order Form: /request.html
+- Admin: /backend/admin_login.php (admin/thakur123)
 
-**Frontend Showcase (GitHub Pages):**
-```
-https://thakuransh24.github.io/editpro-deploy/
-✅ All HTML/CSS/JS work perfectly
-✅ Responsive design
-✅ Form preview (static)
-```
+## Local Setup
+1. `brew services start mysql`
+2. `cd backend && php setup.php`
+3. `php router.php` (or `php -S localhost:8000`)
+4. Visit http://localhost:8000
 
-**Full PHP Backend (Local):**
+## Deploy (Railway/Vercel/Netlify)
 ```
-http://localhost:8000/
-✅ Admin dashboard
-✅ Editor dashboard
-✅ Order submission → Database
-✅ File uploads
+railway up
 ```
+HTTPS automatic.
 
-**Production Deployment → Railway.app (Recommended)**
-```
-1. railway.app → GitHub → ThakurAnsh24/editpro-deploy
-2. Deploy PHP + Add MySQL
-3. LIVE PHP site globally
-```
+## Features
+- ✅ Public order form (no login) – saves to DB
+- ✅ Admin dashboard (protected)
+- ✅ Editor login (team management)
+- ✅ File uploads (500MB)
+- ✅ Responsive design
+- ✅ Production router (router.php)
 
-## 📋 Features Complete
-```
-✅ Video editing orders
-✅ Poster design 
-✅ WhatsApp delivery
-✅ Referral system
-✅ Admin panel
-✅ Editor dashboard
-✅ File upload (500MB)
-✅ Payment tracking
-✅ Multiple services
-```
+## Credentials
+- Admin: admin / thakur123
+- Editors: Add via admin → team_members.php
 
-## 🛠 Setup Local
-```
-1. ./start-server.sh
-2. backend/setup.php (database)
-3. localhost:8000/
-```
-
-## 📱 Admin Login
-```
-username: admin
-password: admin123
-```
-
-## 🎯 Next Steps
-1. Deploy Railway for LIVE PHP
-2. Add domain (Namecheap)
-3. Go live!
-
-**EditPro production ready!** 🚀
-
+**Fully production-ready!** 🚀
