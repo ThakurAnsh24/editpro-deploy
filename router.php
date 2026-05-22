@@ -28,11 +28,15 @@ if ($path === 'instagram.html') {
     exit;
 }
 
-
+// Make sure root '/' can show the main landing page.
+// (We keep pro routing separate by explicitly routing index.html.)
 
 
 $routes = [
+
     '' => 'index.html',
+    'admin_login.php' => 'backend/admin_login.php',
+
     'index.html' => 'index.html',
     'services.html' => 'services.html',
     'pricing.html' => 'pricing.html',
@@ -51,14 +55,21 @@ $routes = [
 
     // backend routes
     'backend/admin_login.php' => 'backend/admin_login.php',
+    'admin_dashboard_pro.php' => 'backend/admin_dashboard_pro.php',
+    'admin_dashboard_final.php' => 'backend/admin_dashboard_final.php',
+
 
     'backend/editor_login.php' => 'backend/editor_login.php',
     'backend/admin_dashboard_secure.php' => 'backend/admin_dashboard_secure.php',
+    'backend/admin_dashboard_pro.php' => 'backend/admin_dashboard_pro.php',
+    'backend/admin_dashboard_final.php' => 'backend/admin_dashboard_final.php',
     'backend/editor_dashboard.php' => 'backend/editor_dashboard.php',
     'backend/team_members.php' => 'backend/team_members.php',
     'backend/save_order_fixed.php' => 'backend/save_order_fixed.php',
-    'backend/test.php' => 'backend/test.php'
+    'backend/test.php' => 'backend/test.php',
+    'backend/admin_logout.php' => 'backend/admin_logout.php'
 ];
+
 
 // Static file handling (css/js/images/uploads)
 // PHP server with a router.php only executes router.php for non-existing files, so we must

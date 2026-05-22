@@ -13,6 +13,7 @@ unset($_SESSION['admin_name']);
 // Admin credentials
 $admin_username = "admin";
 $admin_password = "thakur123";
+$allow_demo = false;
 
 $error = '';
 
@@ -23,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (empty($username) || empty($password)) {
         $error = 'Please enter both username and password.';
-    } elseif ($username === $admin_username && $password === $admin_password) {
+} elseif ($username === $admin_username && $password === $admin_password) {
         $_SESSION['admin_logged_in'] = true;
         $_SESSION['admin_name'] = $username;
         $_SESSION['admin_login_time'] = time();
@@ -60,7 +61,7 @@ body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #667e
 .login-btn:hover { transform: translateY(-2px); }
 .error-msg { background: #fee; border: 1px solid #fcc; color: #c33; padding: 12px; border-radius: 8px; margin-bottom: 20px; }
 .demo-creds { background: #eef; border: 1px solid #bbd; color: #445; padding: 12px; border-radius: 8px; margin-top: 20px; text-align: center; font-size: 14px; }
-.back-link { display: inline-block; margin-top: 20px; Asc color: #667eea; text-decoration: none; font-weight: 500; }
+.back-link { display: inline-block; margin-top: 20px; color: #667eea; text-decoration: none; font-weight: 500; }
     </style>
 </head>
 <body>
@@ -88,9 +89,7 @@ body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #667e
             <button type="submit" class="login-btn">Access Dashboard</button>
         </form>
         
-        <div class="demo-creds">
-            Demo: admin / thakur123
-        </div>
+
         
         <a href="../index.html" class="back-link">← Back to Site</a>
     </div>
