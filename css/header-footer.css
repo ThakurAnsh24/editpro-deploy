@@ -3,14 +3,9 @@
 .main-nav {
   background: rgba(17, 24, 39, 0.95);
   backdrop-filter: blur(20px);
-  position: fixed;
-  top: 4rem;
+  position: sticky;
+  top: 0;
   z-index: 100;
-  transition: all 0.3s ease;
-}
-
-.main-nav.scrolled {
-  background: rgba(17, 24, 39, 0.98);
 }
 
 .nav-container {

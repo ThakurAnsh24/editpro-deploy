@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#6366f1">
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="Thakur.crea8tions - Professional Video Editing & Poster Design Services. Expert editing for YouTube, Instagram, weddings, events. Custom poster design, invitation cards, scrapbooks. Starting at just ₹249.">
+<meta name="keywords" content="video editing, poster design, instagram reels, wedding videos, event editing, youtube editing, photo editing, invitation cards, scrapbook, digital design, creative services, Thakur.crea8tions">
+<meta name="author" content="Thakur.crea8tions">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Thakur.crea8tions | Professional Video Editing">
+<meta property="og:description" content="Transform your ideas into stunning visuals. Video editing & poster design starting ₹249.">
+<meta property="og:image" content="images/logo.svg">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="images/logo.svg">
+<link rel="apple-touch-icon" href="images/logo.svg">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Preload Critical -->
+<link rel="preload" href="css/style.css" as="style">
+<link rel="preload" href="images/logo.svg" as="image">
+
+<!-- Styles -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/header-footer.css">
+
+<title>Thakur.crea8tions | Professional Video Editing & Design</title>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader">
+  <div class="logo-spin">T</div>
+  <div class="progress-ring">
+    <svg width="80" height="80">
+      <circle cx="40" cy="40" r="36" fill="none" stroke="#e5e7eb" stroke-width="4"/>
+      <circle cx="40" cy="40" r="36" fill="none" stroke="#6366f1" stroke-width="4" stroke-linecap="round" class="progress-circle"/>
+    </svg>
+  </div>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- CURSOR -->
+<div class="custom-cursor" id="customCursor"></div>
+
+<!-- TOAST -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-contact">
+    <a href="mailto:A80editz@gmail.com" aria-label="Email">
+      <img src="images/gmail.svg" alt="">
+      <span>A80editz@gmail.com</span>
+    </a>
+    <a href="tel:+919015353021" aria-label="Call">
+      <img src="images/phone.svg" alt="">
+      <span>+91 90153 53021</span>
+    </a>
+  </div>
+  <div class="social-links">
+    <a href="https://www.instagram.com/thakur.crea8tions" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 2.75A1.25 1.25 0 0 1 4.25 1.5h15.5a1.25 1.25 0 0 1 1.25 1.25v15.5a1.25 1.25 0 0 1 -1.25 1.25H4.25a1.25 1.25 0 0 1 -1.25 -1.25V2.75Zm0 1.25v15.5a.75 .75 0 0 0 .75 .75h15.5a.75 .75 0 0 0 .75 -.75V4a.75 .75 0 0 0 -.75 -.75H4.25a.75 .75 0 0 0 -.75 .75ZM12 6.25a5.75 5.75 0 1 1 0 11.5a5.75 5.75 0 0 1 0 -11.5Zm0 1.75a4 4 0 1 0 0 8a4 4 0 0 0 0 -8Zm1.5 5.75a1.5 1.5 0 1 1 -3 0a1.5 1.5 0 0 1 3 0Z"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="main-nav" id="mainNav">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <a href="index.html" class="nav-logo">Thakur.crea8tions</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="edits.html">Edits</a></li>
+      <li><a href="poster.html">Posters</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="track.html">Track</a></li>
+      <li class="flex gap-2">
+        <a href="backend/admin_login.php" class="staff-link px-4 py-2 rounded-lg">Admin</a>
+        <a href="backend/editor_login.php" class="staff-link px-4 py-2 rounded-lg ml-2">Editor</a>
+      </li>
+    </ul>
+    <button class="nav-toggle" id="navToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-shapes">
+    <div class="hero-shape" style="--delay: 0s"></div>
+    <div class="hero-shape" style="--delay: 2s"></div>
+    <div class="hero-shape" style="--delay: 4s"></div>
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      Professional <span class="gradient-text">Video Editing</span><br>
+      & <span class="gradient-text">Poster Design</span>
+    </h1>
+    <p>Transform raw footage into stunning videos. Eye-catching posters for events, promotions & brands. Fast delivery. Starting ₹249.</p>
+    <div class="hero-buttons">
+      <a href="request.html" class="btn btn-primary cta-track">
+        <span>Start Project</span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 13l4 4L19 7"/></svg>
+      </a>
+      <a href="#pricing" class="btn btn-secondary">View Pricing</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-number" data-target="250">0</span>
+        <span>+</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" data-target="150">0</span>
+        <span>+</span>
+        <span class="stat-label">Clients</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" data-target="3">0</span>
+        <span>+</span>
+        <span class="stat-label">Years</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <div class="section-header">
+      <h2>Our Core Services</h2>
+      <p>Premium video editing and design services trusted by 150+ clients</p>
+    </div>
+    <div class="services-grid">
+      <article class="service-card">
+        <div class="service-icon">🎬</div>
+        <h3>Video Editing</h3>
+        <p>Expert editing for YouTube, Instagram Reels, weddings, events. Color grading, effects, music sync. Fast turnaround.</p>
+        <span class="service-price">From ₹299</span>
+        <a href="edits.html" class="btn btn-primary small">Explore</a>
+      </article>
+      <article class="service-card">
+        <div class="service-icon">🪧</div>
+        <h3>Poster Design</h3>
+        <p>Custom posters for events, fitness, weddings, businesses. Print-ready high-res PNG/PDF. Multiple revisions.</p>
+        <span class="service-price">From ₹249</span>
+        <a href="poster.html" class="btn btn-primary small">Explore</a>
+      </article>
+      <article class="service-card">
+        <div class="service-icon">✨</div>
+        <h3>Full Services</h3>
+        <p>Invitations, scrapbooks, reels, brand kits. Complete creative solutions for all occasions.</p>
+        <span class="service-price">View All</span>
+        <a href="services.html" class="btn btn-primary small">Full List</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <h2>Simple 3-Step Process</h2>
+      <p>From idea to final delivery in days, not weeks</p>
+    </div>
+    <div class="steps-container">
+      <div class="step active">
+        <div class="step-number"><span>01</span></div>
+        <h3>Submit Details</h3>
+        <p>Upload files + requirements via secure form. Instant confirmation. Review in 2hrs.</p>
+      </div>
+      <div class="step-connector"><div class="progress-line"></div></div>
+      <div class="step">
+        <div class="step-number"><span>02</span></div>
+        <h3>We Edit & Design</h3>
+        <p>Professional editing with your feedback. Unlimited revisions until perfect.</p>
+      </div>
+      <div class="step-connector"><div class="progress-line"></div></div>
+      <div class="step">
+        <div class="step-number"><span>03</span></div>
+        <h3>Fast Delivery</h3>
+        <p>Download high-res files. Share-ready. On-time guarantee or money back.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <h2>Trusted By Clients</h2>
+      <p>What our 150+ clients say about our work</p>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-avatar"></div>
+        <div class="testimonial-text">"Transformed our raw footage into viral reels. Fast & professional!"</div>
+        <div class="testimonial-author">- Event Organizer</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-avatar"></div>
+        <div class="testimonial-text">"Posters got 500+ shares. Perfect for our fitness launch!"</div>
+        <div class="testimonial-author">- Gym Owner</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-avatar"></div>
+        <div class="testimonial-text">"Wedding edits made our couple cry happy tears. 5⭐"</div>
+        <div class="testimonial-author">- Wedding Planner</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="quick-contact">
+  <div class="container">
+    <div class="section-header">
+      <h2>Get Free Quote</h2>
+      <p>Ready to start? Send details - response in 2 hours</p>
+    </div>
+    <form class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Service *</label>
+          <select required>
+            <option>Select service</option>
+            <option>Video Editing</option>
+            <option>Poster Design</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Deadline</label>
+          <input type="date">
+        </div>
+      </div>
+      <div class="form-group full">
+        <label>Project Details *</label>
+        <textarea rows="6" required placeholder="Raw files, style reference..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary submit-btn large">Get Quote</button>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="section-header">
+      <h2>Frequently Asked</h2>
+      <p>Everything you need to know before ordering</p>
+    </div>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How fast do you deliver?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Basic edits: 1-2 days. Rush: 24hr.</p>
+        </div>
+      </div>
+      <!-- More FAQ items -->
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <h2>Ready to Transform?</h2>
+    <p>150+ clients trust us</p>
+    <div class="cta-buttons">
+      <a href="request.html" class="btn btn-primary large">Start Project</a>
+      <a href="https://wa.me/919015353021" class="btn btn-secondary large">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<script>
+// Preloader remove after load
+window.addEventListener('load', () => {
+  const preloader = document.querySelector('.preloader');
+  if (!preloader) return;
+  preloader.style.opacity = '0';
+  setTimeout(() => preloader.style.display = 'none', 500);
+});
+
+// Smooth scroll ONLY for hash links like #pricing
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const href = link.getAttribute('href');
+    if (!href || href === '#') return;
+
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (!target) return;
+    target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
+
